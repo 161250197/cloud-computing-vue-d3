@@ -1,0 +1,24 @@
+{
+  "name": "cloud-computing-vue-d3",
+  "private": true,
+  "version": "1.0.0",
+  "description": "云计算课程前端vue项目，使用d3进行数据可视化展示",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/161250197/cloud-computing-vue-d3.git"
+  },
+  "keywords": [
+    "vue",
+    "d3"
+  ],
+  "author": "zlic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/161250197/cloud-computing-vue-d3/issues"
+  },
+  "homepage": "https://github.com/161250197/cloud-computing-vue-d3#readme"
+}

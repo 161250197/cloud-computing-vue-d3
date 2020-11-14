@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import HotCharts from "./components/charts/hot/index";
 import RankCharts from "./components/charts/rank/index";
 import UserCharts from "./components/charts/user/index";
@@ -72,6 +72,10 @@ export default {
   },
   methods: {
     ...mapMutations(["checkHot", "checkRank", "checkUser"]),
+    ...mapActions(["initStore"]),
+  },
+  mounted() {
+    this.initStore();
   },
 };
 </script>

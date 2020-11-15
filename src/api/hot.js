@@ -5,8 +5,11 @@ import {
 } from '../data/consts/server';
 
 async function getHotOneDateData (time) {
+
     const requestConfig = {
-        data: time
+        params: {
+            time
+        }
     };
     const response = await instance.get(HOT_ONE_DATE_DATA, requestConfig);
     const result = response.data;
@@ -15,7 +18,7 @@ async function getHotOneDateData (time) {
 
 async function getHotRangeDateData (from, to) {
     const requestConfig = {
-        data: {
+        params: {
             from, to
         }
     };

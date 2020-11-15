@@ -1,10 +1,10 @@
 import { MODE_DYNAMIC, MODE_ONE_DAY } from "../../data/consts/hot";
-import { regularTimeToDay } from './../../util/math';
+import { regularTimeToDay } from "./../../util/math";
 
 /** 热度 store */
 const store = {
     state: {
-        mode: MODE_ONE_DAY,
+        mode: undefined,
         date: undefined,
         fromDate: undefined,
         toDate: undefined
@@ -28,6 +28,11 @@ const store = {
         setHotToDate (state, time) {
             state.toDate = regularTimeToDay(time);
         },
+    },
+    actions: {
+        initHotState ({ commit }) {
+            commit('changeHotModeOneDay');
+        }
     }
 };
 

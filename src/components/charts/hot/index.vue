@@ -1,9 +1,18 @@
 <template>
-  <div class="hot-charts">
-    <Header :isOneDayMode="isOneDayMode" :isDynamicMode="isDynamicMode" />
+  <div class="wrapper" v-if="isOneDayMode">
+    <div class="header">
+      <OneDateHeader />
+    </div>
     <div class="content">
-      <OneDay v-if="isOneDayMode" />
-      <Dynamic v-else-if="isDynamicMode" />
+      <OneDay />
+    </div>
+  </div>
+  <div class="wrapper" v-else-if="isDynamicMode">
+    <div class="header">
+      <DynamicHeader />
+    </div>
+    <div class="content">
+      <Dynamic />
     </div>
   </div>
 </template>
@@ -12,7 +21,8 @@
 // TODO
 // 热度相关图
 
-import Header from "./header";
+import OneDateHeader from "./header/OneDate";
+import DynamicHeader from "./header/Dynamic";
 import OneDay from "./oneDay/index";
 import Dynamic from "./dynamic/index";
 import { mapState } from "vuex";
@@ -21,7 +31,8 @@ import { MODE_DYNAMIC, MODE_ONE_DAY } from "./../../../data/consts/hot";
 export default {
   name: "charts.hot",
   components: {
-    Header,
+    OneDateHeader,
+    DynamicHeader,
     OneDay,
     Dynamic,
   },

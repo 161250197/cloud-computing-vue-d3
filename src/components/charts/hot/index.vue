@@ -1,8 +1,8 @@
 <template>
   <div class="hot-charts">
-    <HotDynamicBarChart />
-    <HotPieChart />
-    <HotRadarChart />
+    <Header />
+    <OneDay />
+    <Dynamic />
   </div>
 </template>
 
@@ -10,16 +10,16 @@
 // TODO
 // 热度相关图
 
-import HotDynamicBarChart from "./HotDynamicBarChart";
-import HotPieChart from "./HotPieChart";
-import HotRadarChart from "./HotPieChart";
+import Header from "./header";
+import OneDay from "./oneDay/index";
+import Dynamic from "./dynamic/index";
 
 export default {
-  name: "HotCharts",
+  name: "charts.hot",
   components: {
-    HotDynamicBarChart,
-    HotPieChart,
-    HotRadarChart,
+    Header,
+    OneDay,
+    Dynamic,
   },
 };
 </script>

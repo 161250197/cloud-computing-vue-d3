@@ -1,6 +1,11 @@
 <template>
-  <div class="hot-dynamic-bar-chart">
-    <div :id="containerId"></div>
+  <div class="one-day-hot-bar-chart">
+    <div class="time-wrapper">
+      <span class="title">选择日期</span>
+      <el-date-picker v-model="date" type="date" placeholder="选择日期">
+      </el-date-picker>
+    </div>
+    <div :ref="container"></div>
   </div>
 </template>
 
@@ -15,23 +20,33 @@ import {
   TYPE_RECT,
   LABEL_UPDATE_ANIMATION,
   LABEL_APPEAR_ANIMATION,
-} from "./../../../data/consts/g2";
+} from "./../../../../data/consts/g2";
+
+import { regularTimeToDay } from "./../../../util/math";
 
 export default {
-  name: "HotDynamicBarChart",
+  name: "OneDayHotBarChart",
   data() {
+    const today = regularTimeToDay(Date.now());
     return {
-      containerId: "container",
+      container: "container",
+      date: new Date(today),
       chart: undefined,
-      intervalId: undefined,
     };
+  },
+  watch: {
+    date() {
+      this.refreshChart();
+    },
   },
   methods: {
     async initChart() {
       const data = await this.queryData();
 
+      const container = this.$refs[this.container];
+
       this.chart = new Chart({
-        container: this.containerId,
+        container,
         autoFit: true,
         height: 500,
         padding: [20, 60],
@@ -151,15 +166,11 @@ export default {
           id: 9,
         },
       ];
-      return Promise.resolve(this.handleData(data).slice(0, 5));
+      return Promise.resolve(this.handleData(data));
     },
   },
   mounted() {
     this.initChart();
-    this.intervalId = setInterval(this.refreshChart, 2000);
-  },
-  beforeDestroy() {
-    clearInterval(this.intervalId);
   },
 };
 </script>

@@ -4,8 +4,12 @@
 const serverHost = 'localhost';
 const serverPort = 8080;
 const TEST = '/test';
+const HOT_ONE_DATE_DATA = '/hotOneDateData';
+const HOT_RANGE_DATE_DATA = '/hotRangeDateData';
 
 export {
+    HOT_ONE_DATE_DATA,
+    HOT_RANGE_DATE_DATA,
     TEST,
     serverHost,
     serverPort

@@ -21,15 +21,19 @@ export default {
   props: {
     queryData: {
       type: Function,
+      required: true,
     },
     dataIdName: {
       type: String,
+      required: true,
     },
     dataYName: {
       type: String,
+      required: true,
     },
     dataXName: {
       type: String,
+      required: true,
     },
   },
   data() {

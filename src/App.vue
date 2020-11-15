@@ -6,7 +6,7 @@
       <div
         class="icon-wrapper"
         :class="{ selected: isHotMode }"
-        @click="checkHot"
+        @click="changeModeHot"
       >
         <i class="el-icon-share"></i>
         <span>热度</span>
@@ -14,7 +14,7 @@
       <div
         class="icon-wrapper"
         :class="{ selected: isRankMode }"
-        @click="checkRank"
+        @click="changeModeRank"
       >
         <i class="el-icon-star-off"></i>
         <span>评分</span>
@@ -22,7 +22,7 @@
       <div
         class="icon-wrapper"
         :class="{ selected: isUserMode }"
-        @click="checkUser"
+        @click="changeModeUser"
       >
         <i class="el-icon-user-solid"></i>
         <span>用户</span>
@@ -41,7 +41,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
 import HotCharts from "./components/charts/hot/index";
 import RankCharts from "./components/charts/rank/index";
 import UserCharts from "./components/charts/user/index";
-import { HOT, RANK, USER } from "./data/consts/mode";
+import { MODE_HOT, MODE_RANK, MODE_USER } from "./data/consts/mode";
 
 export default {
   name: "App",
@@ -58,20 +58,20 @@ export default {
       return this.mode !== undefined;
     },
     isHotMode() {
-      return this.mode === HOT;
+      return this.mode === MODE_HOT;
     },
     isRankMode() {
-      return this.mode === RANK;
+      return this.mode === MODE_RANK;
     },
     isUserMode() {
-      return this.mode === USER;
+      return this.mode === MODE_USER;
     },
   },
   data() {
     return {};
   },
   methods: {
-    ...mapMutations(["checkHot", "checkRank", "checkUser"]),
+    ...mapMutations(["changeModeHot", "changeModeRank", "changeModeUser"]),
     ...mapActions(["initStore"]),
   },
   mounted() {

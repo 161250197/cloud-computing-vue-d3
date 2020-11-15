@@ -1,37 +1,26 @@
 import {
-    HOT,
-    RANK,
-    USER,
+    MODE_HOT,
+    MODE_RANK,
+    MODE_USER,
 } from './../../data/consts/mode';
 
 const store = {
     state: {
-        mode: undefined
+        // mode: undefined
+        mode: MODE_HOT
     },
     mutations: {
-        /**
-         * 重置模式
-         */
         resetMode (state) {
             state.mode = undefined;
         },
-        /**
-         * 设置 **热度** 模式
-         */
-        checkHot (state) {
-            state.mode = HOT;
+        changeModeHot (state) {
+            state.mode = MODE_HOT;
         },
-        /**
-         * 设置 **热度** 模式
-         */
-        checkRank (state) {
-            state.mode = RANK;
+        changeModeRank (state) {
+            state.mode = MODE_RANK;
         },
-        /**
-         * 设置 **热度** 模式
-         */
-        checkUser (state) {
-            state.mode = USER;
+        changeModeUser (state) {
+            state.mode = MODE_USER;
         },
     }
 };

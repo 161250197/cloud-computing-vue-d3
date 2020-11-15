@@ -1,9 +1,9 @@
-const HOT = 'hot';
-const RANK = 'rank';
-const USER = 'user';
+const MODE_HOT = 'hot';
+const MODE_RANK = 'rank';
+const MODE_USER = 'user';
 
 export {
-    HOT,
-    RANK,
-    USER
+    MODE_HOT,
+    MODE_RANK,
+    MODE_USER
 };

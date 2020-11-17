@@ -5,11 +5,18 @@ import { regularTimeToDay } from "./../../util/math";
 const store = {
     state: {
         mode: undefined,
+        selectedId: undefined,
         date: undefined,
         fromDate: undefined,
         toDate: undefined
     },
     mutations: {
+        resetSelectedId (state) {
+            state.selectedId = undefined;
+        },
+        setSelectedId (state, id) {
+            state.selectedId = id;
+        },
         changeHotModeOneDay (state) {
             state.mode = MODE_ONE_DAY;
 

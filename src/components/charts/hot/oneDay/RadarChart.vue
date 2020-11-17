@@ -1,13 +1,18 @@
 <template>
-  <div class="hot-radar-chart">HotRadarChart</div>
+  <div class="hot-radar-chart">{{ selectedId }}</div>
 </template>
 
 <script>
 // TODO
-// 热度雷达图
 
 export default {
-  name: "HotRadarChart",
+  name: "hot.oneDay.RadarChart",
+  props: {
+    selectedId: {
+      type: Number,
+      required: true,
+    },
+  },
 };
 </script>
 

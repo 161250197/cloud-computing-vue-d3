@@ -35,6 +35,10 @@ export default {
       type: String,
       required: true,
     },
+    onDataClicked: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -57,6 +61,15 @@ export default {
       this.chart.coordinate(TYPE_RECT).transpose();
       this.chart.legend(false);
       this.chart.tooltip(false);
+
+      this.chart.interaction("element-active");
+      this.chart.interaction("element-single-selected");
+
+      this.chart.on("element:click", (ev) => {
+        const id = ev.data.data[this.dataIdName];
+        this.onDataClicked(id);
+      });
+
       this.chart.axis(this.dataYName, DEFAULT_Y_DYNAMIC_CONFIG);
       this.setChartTitle();
       this.chart
@@ -64,7 +77,25 @@ export default {
         .position(`${this.dataYName}*${this.dataXName}`)
         .color(this.dataIdName)
         .label(this.dataXName, DEFAULT_LABEL_CONFIG)
-        .animate(DEFAULT_DYNAMIC_ANIMATE_CONFIG);
+        .animate(DEFAULT_DYNAMIC_ANIMATE_CONFIG)
+        .state({
+          selected: {
+            style: {
+              fill: "#e02222",
+              lineWidth: 2,
+              stroke: "#E8684A",
+              opacity: 0.6,
+            },
+          },
+          active: {
+            animate: { duration: 100, easing: "easeLinear" },
+            style: {
+              lineWidth: 2,
+              stroke: "#bbbbbb",
+              strokeOpacity: 0.6,
+            },
+          },
+        });
       this.chart.render();
     },
     async refreshChart() {

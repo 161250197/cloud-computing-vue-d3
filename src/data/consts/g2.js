@@ -55,7 +55,27 @@ const DEFAULT_Y_DYNAMIC_CONFIG = {
     },
 };
 
+const DEFAULT_SELECTED_STATE_CONFIG = {
+    style: {
+        fill: "#e02222",
+        lineWidth: 2,
+        stroke: "#E8684A",
+        opacity: 0.6,
+    },
+};
+
+const DEFAULT_ACTIVE_STATE_CONFIG = {
+    animate: { duration: 100, easing: "easeLinear" },
+    style: {
+        lineWidth: 2,
+        stroke: "#bbbbbb",
+        strokeOpacity: 0.6,
+    },
+};
+
 export {
+    DEFAULT_ACTIVE_STATE_CONFIG,
+    DEFAULT_SELECTED_STATE_CONFIG,
     DEFAULT_Y_DYNAMIC_CONFIG,
     DEFAULT_DYNAMIC_ANIMATE_CONFIG,
     DEFAULT_LABEL_CONFIG,

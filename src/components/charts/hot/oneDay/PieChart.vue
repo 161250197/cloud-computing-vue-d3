@@ -1,16 +1,20 @@
 <template>
-  <div class="hot-pie-chart">HotPieChart</div>
+  <div class="hot-pie-chart">{{ selectedId }}</div>
 </template>
 
 <script>
 // TODO
-// 热度饼图
 
 export default {
-  name: "HotBarChart",
+  name: "hot.oneDay.PieChart",
+  props: {
+    selectedId: {
+      type: Number,
+      required: true,
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 </style>

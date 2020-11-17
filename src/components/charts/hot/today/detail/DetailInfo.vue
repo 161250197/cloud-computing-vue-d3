@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "hot.oneDay.detail.DetailInfo",
+  name: "hot.today.detail.DetailInfo",
 };
 </script>
 

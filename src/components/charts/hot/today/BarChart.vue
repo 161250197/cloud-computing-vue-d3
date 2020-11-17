@@ -15,14 +15,13 @@ import {
   DEFAULT_SELECTED_STATE_CONFIG,
   DEFAULT_ACTIVE_STATE_CONFIG,
 } from "../../../../data/consts/g2";
-import { getHotOneDateData } from "./../../../../api/hot";
+import { getHotTodayData } from "./../../../../api/hot";
 import { BAR_CHART_NAMES } from "../../../../data/consts/hot";
 
 export default {
-  name: "hot.oneDay.BarChart",
+  name: "hot.today.BarChart",
   computed: {
     ...mapState({
-      date: (state) => state.hot.date,
       selectedId: (state) => state.hot.selectedId,
     }),
   },
@@ -35,15 +34,10 @@ export default {
       chartRef: CHART_REF,
     };
   },
-  watch: {
-    date() {
-      this.refreshChart();
-    },
-  },
   methods: {
     ...mapMutations(["resetSelectedId", "setSelectedId"]),
     queryData() {
-      return getHotOneDateData(this.date);
+      return getHotTodayData();
     },
     onDataClicked(id) {
       if (this.selectedId === id) {
@@ -87,11 +81,6 @@ export default {
           active: DEFAULT_ACTIVE_STATE_CONFIG,
         });
       this.chart.render();
-    },
-    async refreshChart() {
-      const data = await this.queryData();
-      this.chart.annotation().clear(true);
-      this.chart.changeData(data);
     },
   },
   mounted() {

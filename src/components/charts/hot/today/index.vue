@@ -10,7 +10,7 @@ import BarChart from "./BarChart.vue";
 import Detail from "./detail/index.vue";
 
 export default {
-  name: "hot.oneDay",
+  name: "hot.today",
   components: {
     Detail,
     BarChart,

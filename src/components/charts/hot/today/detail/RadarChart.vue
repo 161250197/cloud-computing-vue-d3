@@ -6,7 +6,7 @@
 // TODO
 
 export default {
-  name: "hot.oneDay.detail.RadarChart",
+  name: "hot.today.detail.RadarChart",
 };
 </script>
 

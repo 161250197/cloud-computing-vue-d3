@@ -11,16 +11,15 @@ import RadarChart from "./RadarChart.vue";
 import DetailInfo from "./DetailInfo.vue";
 
 export default {
-  name: "hot.oneDay.detail",
+  name: "hot.today.detail",
+  computed: {
+    ...mapState({
+      selectedId: (state) => state.hot.selectedId,
+    }),
+  },
   components: {
     DetailInfo,
     RadarChart,
-  },
-  computed: {
-    ...mapState({
-      date: (state) => state.hot.date,
-      selectedId: (state) => state.hot.selectedId,
-    }),
   },
 };
 </script>

@@ -1,4 +1,4 @@
-const MODE_ONE_DAY = 'oneDay';
+const MODE_TODAY = 'today';
 const MODE_DYNAMIC = 'dynamic';
 const BAR_CHART_NAMES = {
     X: 'value',
@@ -9,5 +9,5 @@ const BAR_CHART_NAMES = {
 export {
     BAR_CHART_NAMES,
     MODE_DYNAMIC,
-    MODE_ONE_DAY
+    MODE_TODAY
 };

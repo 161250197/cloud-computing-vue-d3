@@ -1,17 +1,12 @@
 import { instance } from '../util/request';
 import {
     HOT_DETAIL,
-    HOT_ONE_DATE_DATA,
+    HOT_TODAY_DATA,
     HOT_RANGE_DATE_DATA
 } from '../data/consts/server';
 
-async function getHotOneDateData (time) {
-    const requestConfig = {
-        params: {
-            time
-        }
-    };
-    const response = await instance.get(HOT_ONE_DATE_DATA, requestConfig);
+async function getHotTodayData () {
+    const response = await instance.get(HOT_TODAY_DATA);
     const result = response.data;
     return result;
 }
@@ -39,7 +34,7 @@ async function getHotRangeDateData (from, to) {
 }
 
 export {
-    getHotOneDateData,
+    getHotTodayData,
     getHotDetail,
     getHotRangeDateData,
 };

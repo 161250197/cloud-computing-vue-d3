@@ -16,6 +16,7 @@ import {
   DEFAULT_ACTIVE_STATE_CONFIG,
 } from "../../../../data/consts/g2";
 import { getHotOneDateData } from "./../../../../api/hot";
+import { BAR_CHART_NAMES } from "../../../../data/consts/hot";
 
 export default {
   name: "hot.oneDay.BarChart",
@@ -27,9 +28,9 @@ export default {
   },
   data() {
     return {
-      dataIdName: "id",
-      dataYName: "city",
-      dataXName: "value",
+      dataIdName: BAR_CHART_NAMES.ID,
+      dataYName: BAR_CHART_NAMES.Y,
+      dataXName: BAR_CHART_NAMES.X,
       chart: undefined,
       chartRef: CHART_REF,
     };

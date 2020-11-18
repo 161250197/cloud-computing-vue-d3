@@ -3,6 +3,7 @@
 </template>
 
 <script>
+// TODO 显示和颜色调整
 import { Chart } from "@antv/g2";
 import { CHART_REF } from "../../../../data/consts/common";
 import {

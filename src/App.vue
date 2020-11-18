@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 #app {
   user-select: none;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -77,11 +77,36 @@ export default {
 }
 </style>
 
-<style>
+<style lang="less">
 html,
-body {
+body,
+#app {
   width: 100%;
   height: 100%;
   margin: 0;
+}
+
+#app {
+  .el-main {
+    padding: 0 !important;
+    .chart {
+      height: 100%;
+      .el-page-header {
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1;
+        background: white;
+      }
+      .content {
+        height: 100%;
+        box-sizing: border-box;
+        padding-top: 80px;
+      }
+    }
+  }
 }
 </style>

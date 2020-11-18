@@ -1,7 +1,7 @@
 const LABEL_APPEAR = 'label-appear';
 const LABEL_UPDATE = 'label-update';
 const EASE_LINEAR = 'easeLinear';
-const DEFAULT_DURATION = 1000;
+const DEFAULT_DURATION = 200;
 const TYPE_RECT = 'rect';
 
 const LABEL_APPEAR_ANIMATION = {
@@ -19,7 +19,7 @@ const LABEL_UPDATE_ANIMATION = {
 
 const DEFAULT_CHART_SET = {
     autoFit: true,
-    height: 500,
+    height: 600,
     padding: [20, 60],
 };
 

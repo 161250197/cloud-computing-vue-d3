@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" v-if="loaded">
+  <div class="chart" v-if="loaded">
     <Header />
     <Content />
   </div>

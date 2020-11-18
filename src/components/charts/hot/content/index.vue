@@ -1,12 +1,11 @@
 <template>
-  <div class="wrapper">
+  <div class="content">
     <BarChart style="width: 50%" />
     <RadarChart style="width: 50%" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
 import BarChart from "./BarChart.vue";
 import RadarChart from "./RadarChart.vue";
 
@@ -16,20 +15,14 @@ export default {
     RadarChart,
     BarChart,
   },
-  computed: {
-    ...mapState({
-      selectedIdArr: (state) => state.hot.selectedIdArr,
-    }),
-    showDetail() {
-      return this.selectedIdArr.length > 0;
-    },
-  },
 };
 </script>
 
 <style lang="less" scoped>
-.wrapper {
+.content {
   display: flex;
   width: 100%;
+  height: 100%;
+  align-items: center;
 }
 </style>

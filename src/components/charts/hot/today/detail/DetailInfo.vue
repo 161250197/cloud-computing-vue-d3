@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="post">
-      <!-- img 添加出错处理 -->
+      <!-- TODO img 添加出错处理 -->
       <img :src="postSrc" />
     </div>
     <div>{{ detail.name }}</div>
@@ -12,10 +12,7 @@
 </template>
 
 <script>
-import {
-  DATE_JOINER,
-  DEFAULT_POST_SRC,
-} from "./../../../../../data/consts/common";
+import { DATE_JOINER } from "./../../../../../data/consts/common";
 export default {
   name: "hot.today.detail.DetailInfo",
   props: {
@@ -26,8 +23,7 @@ export default {
   },
   computed: {
     postSrc() {
-      // TODO
-      return DEFAULT_POST_SRC;
+      return this.detail.postSrc;
     },
     firstBroadcastTimeStr() {
       const firstBroadcastTime = new Date(this.detail.firstBroadcastTime);

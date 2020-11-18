@@ -4,9 +4,9 @@
 
 <script>
 import { Chart } from "@antv/g2";
-import { CHART_REF } from "../../../../../data/consts/g2";
+import { CHART_REF } from "../../../../../data/consts/common";
 import {
-  RADAR_CHART_ITEMS,
+  RADAR_CHART_ITEMS_MAP,
   RADAR_CHART_NAMES,
 } from "../../../../../data/consts/hot";
 
@@ -29,11 +29,16 @@ export default {
     queryData() {
       const result = [];
       this.maxValue = 0;
-      RADAR_CHART_ITEMS.forEach((item) => {
+      RADAR_CHART_ITEMS_MAP.forEach(({ item, showName }) => {
         const { name, id } = this.detail;
         const value = this.detail[item];
         this.maxValue = Math.max(this.maxValue, value);
-        const data = { item, name, id, value };
+        const data = {};
+        const { ITEM, VALUE, ID, NAME } = RADAR_CHART_NAMES;
+        data[ITEM] = showName;
+        data[VALUE] = value;
+        data[ID] = id;
+        data[NAME] = name;
         result.push(data);
       });
       return result;
@@ -41,7 +46,7 @@ export default {
     scaleValue() {
       let maxValue = this.maxValue || 0;
       maxValue = Math.floor(maxValue / 10) * 10 + 10;
-      this.chart.scale("value", {
+      this.chart.scale(RADAR_CHART_NAMES.VALUE, {
         min: 0,
         max: maxValue,
       });
@@ -68,10 +73,13 @@ export default {
       });
       this.chart = chart;
       chart.data(data);
+
       this.scaleValue();
+
       chart.coordinate("polar", {
         radius: 0.8,
       });
+
       chart.tooltip({
         shared: true,
         showCrosshairs: true,
@@ -85,7 +93,7 @@ export default {
         },
       });
 
-      const { ITEM, VALUE, ID } = RADAR_CHART_NAMES;
+      const { ITEM, VALUE, NAME } = RADAR_CHART_NAMES;
       chart.axis(ITEM, {
         line: null,
         tickLine: null,
@@ -102,20 +110,21 @@ export default {
         tickLine: null,
         grid: {
           line: {
-            type: "line",
+            type: "circle",
             style: {
               lineDash: null,
             },
           },
+          alternateColor: "rgba(0, 0, 0, 0.04)",
         },
       });
 
       const positionStr = `${ITEM}*${VALUE}`;
-      chart.line().position(positionStr).color(ID).size(2);
+      chart.line().position(positionStr).color(NAME).size(2);
       chart
         .point()
         .position(positionStr)
-        .color(ID)
+        .color(NAME)
         .shape("circle")
         .size(4)
         .style({
@@ -123,7 +132,7 @@ export default {
           lineWidth: 1,
           fillOpacity: 1,
         });
-      chart.area().position(positionStr).color(ID);
+      chart.area().position(positionStr).color(NAME);
       chart.render();
     },
   },

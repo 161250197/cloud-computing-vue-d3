@@ -9,13 +9,13 @@ import {
   DEFAULT_Y_DYNAMIC_CONFIG,
   TYPE_RECT,
   DEFAULT_CHART_SET,
-  CHART_REF,
   DEFAULT_LABEL_CONFIG,
   DEFAULT_DYNAMIC_ANIMATE_CONFIG,
   DEFAULT_SELECTED_STATE_CONFIG,
   DEFAULT_ACTIVE_STATE_CONFIG,
 } from "../../../../data/consts/g2";
 import { BAR_CHART_NAMES } from "../../../../data/consts/hot";
+import { CHART_REF } from "../../../../data/consts/common";
 
 export default {
   name: "hot.today.BarChart",

@@ -23,8 +23,6 @@ const DEFAULT_CHART_SET = {
     padding: [20, 60],
 };
 
-const CHART_REF = 'chartRef';
-
 const DEFAULT_OFFSET = 5;
 
 const DEFAULT_LABEL_CONFIG = {
@@ -65,7 +63,7 @@ const DEFAULT_SELECTED_STATE_CONFIG = {
 };
 
 const DEFAULT_ACTIVE_STATE_CONFIG = {
-    animate: { duration: 100, easing: "easeLinear" },
+    animate: { duration: 100, easing: EASE_LINEAR },
     style: {
         lineWidth: 2,
         stroke: "#bbbbbb",
@@ -79,7 +77,6 @@ export {
     DEFAULT_Y_DYNAMIC_CONFIG,
     DEFAULT_DYNAMIC_ANIMATE_CONFIG,
     DEFAULT_LABEL_CONFIG,
-    CHART_REF,
     DEFAULT_CHART_SET,
     LABEL_APPEAR_ANIMATION,
     LABEL_UPDATE_ANIMATION,

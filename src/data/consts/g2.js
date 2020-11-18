@@ -55,10 +55,9 @@ const DEFAULT_Y_DYNAMIC_CONFIG = {
 
 const DEFAULT_SELECTED_STATE_CONFIG = {
     style: {
-        fill: "#e02222",
         lineWidth: 2,
-        stroke: "#E8684A",
-        opacity: 0.6,
+        stroke: "#eebbbb",
+        strokeOpacity: 0.6,
     },
 };
 

@@ -1,25 +1,31 @@
 <template>
   <div class="wrapper" v-if="loaded">
     <Header />
-    <Today />
+    <Content />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import Header from "./Header";
-import Today from "./today/index";
+import Content from "./content/index";
 
 export default {
   name: "charts.hot",
   components: {
     Header,
-    Today,
+    Content,
   },
   computed: {
     ...mapState({
       loaded: (state) => state.hot.loaded,
     }),
+  },
+  methods: {
+    ...mapActions(["initHotState"]),
+  },
+  mounted() {
+    this.initHotState();
   },
 };
 </script>

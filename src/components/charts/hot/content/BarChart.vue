@@ -18,7 +18,7 @@ import { BAR_CHART_NAMES } from "../../../../data/consts/hot";
 import { CHART_REF } from "../../../../data/consts/common";
 
 export default {
-  name: "hot.today.BarChart",
+  name: "hot.content.BarChart",
   computed: {
     ...mapState({
       hotRankArr: (state) => state.hot.hotRankArr,
@@ -27,10 +27,6 @@ export default {
   },
   data() {
     return {
-      dataIdName: BAR_CHART_NAMES.ID,
-      dataYName: BAR_CHART_NAMES.Y,
-      dataXName: BAR_CHART_NAMES.X,
-      chart: undefined,
       chartRef: CHART_REF,
     };
   },
@@ -42,36 +38,38 @@ export default {
     async initChart() {
       const container = this.$refs[this.chartRef];
 
-      this.chart = new Chart({
+      const chart = new Chart({
         ...DEFAULT_CHART_SET,
         container,
       });
 
-      this.chart.data(this.hotRankArr);
-      this.chart.coordinate(TYPE_RECT).transpose();
-      this.chart.legend(false);
-      this.chart.tooltip(false);
+      chart.data(this.hotRankArr);
+      chart.coordinate(TYPE_RECT).transpose();
+      chart.legend(false);
+      chart.tooltip(false);
 
-      this.chart.interaction("element-active");
-      this.chart.interaction("element-selected");
+      chart.interaction("element-active");
+      chart.interaction("element-selected");
 
-      this.chart.on("element:click", (ev) => {
-        const id = ev.data.data[this.dataIdName];
+      const { ID, X, Y, NAME } = BAR_CHART_NAMES;
+
+      chart.on("element:click", (ev) => {
+        const id = ev.data.data[ID];
         this.onDataClicked(id);
       });
 
-      this.chart.axis(this.dataYName, DEFAULT_Y_DYNAMIC_CONFIG);
-      this.chart
+      chart.axis(Y, DEFAULT_Y_DYNAMIC_CONFIG);
+      chart
         .interval()
-        .position(`${this.dataYName}*${this.dataXName}`)
-        .color(this.dataIdName)
-        .label(this.dataXName, DEFAULT_LABEL_CONFIG)
+        .position(`${Y}*${X}`)
+        .color(NAME)
+        .label(X, DEFAULT_LABEL_CONFIG)
         .animate(DEFAULT_DYNAMIC_ANIMATE_CONFIG)
         .state({
           selected: DEFAULT_SELECTED_STATE_CONFIG,
           active: DEFAULT_ACTIVE_STATE_CONFIG,
         });
-      this.chart.render();
+      chart.render();
     },
   },
   mounted() {

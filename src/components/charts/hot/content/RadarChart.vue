@@ -4,32 +4,41 @@
 
 <script>
 import { Chart } from "@antv/g2";
-import { CHART_REF } from "../../../../../data/consts/common";
+import { CHART_REF } from "../../../../data/consts/common";
 import {
   RADAR_CHART_ITEMS_MAP,
   RADAR_CHART_NAMES,
-} from "../../../../../data/consts/hot";
+} from "../../../../data/consts/hot";
+import { mapState } from "vuex";
+
+const DEFAULT_MAX_VALUE = 100;
 
 export default {
-  name: "hot.today.detail.RadarChart",
-  props: {
-    detailArr: {
-      type: Array,
-      required: true,
-    },
+  name: "hot.content.RadarChart",
+  computed: {
+    ...mapState({
+      selectedIdArr: (state) => state.hot.selectedIdArr,
+      dataMap: (state) => state.hot.dataMap,
+    }),
   },
   data() {
     return {
-      maxValue: undefined,
+      maxValue: DEFAULT_MAX_VALUE,
       chart: undefined,
       chartRef: CHART_REF,
     };
   },
+  watch: {
+    selectedIdArr() {
+      this.refreshChart();
+    },
+  },
   methods: {
     queryData() {
       const result = [];
-      this.maxValue = 0;
-      this.detailArr.forEach((detail) => {
+      this.maxValue = DEFAULT_MAX_VALUE;
+      this.selectedIdArr.forEach((id) => {
+        const detail = this.dataMap[id];
         RADAR_CHART_ITEMS_MAP.forEach(({ item, showName }) => {
           const { name, id } = detail;
           const value = detail[item];
@@ -54,7 +63,7 @@ export default {
       });
     },
     refreshChart() {
-      if (this.chart) {
+      if (this.chart !== undefined) {
         const data = this.queryData();
         this.scaleValue();
         this.$nextTick(() => {

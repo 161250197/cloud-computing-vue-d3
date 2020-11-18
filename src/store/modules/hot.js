@@ -12,6 +12,9 @@ const store = {
         setHotLoaded (state, loaded) {
             state.loaded = loaded;
         },
+        resetSelectedIdArr (state) {
+            state.selectedIdArr = [];
+        },
         addSelectedId (state, id) {
             const index = state.selectedIdArr.indexOf(id);
             const added = index >= 0;
@@ -39,6 +42,10 @@ const store = {
             commit('setHotRankArr', hotTodayData);
             commit('setDataMap', hotTodayData);
             commit('setHotLoaded', true);
+        },
+        async resetHotState ({ commit }) {
+            commit('setHotLoaded', false);
+            commit('resetSelectedIdArr');
         }
     }
 };

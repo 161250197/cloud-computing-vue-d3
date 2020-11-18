@@ -13,9 +13,8 @@ const store = new Vuex.Store({
         user,
     },
     actions: {
-        initStore ({ dispatch }) {
+        initStore () {
             registerDynamicLabelAnimation();
-            dispatch('initHotState');
         }
     },
 });

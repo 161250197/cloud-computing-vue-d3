@@ -1,6 +1,7 @@
 const BAR_CHART_NAMES = {
     X: 'hot',
     Y: 'name',
+    NAME: 'name',
     ID: 'id'
 };
 const RADAR_CHART_ITEMS_MAP = [

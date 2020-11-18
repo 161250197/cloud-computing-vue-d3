@@ -4,11 +4,12 @@
 
 <script>
 import { mapActions, mapMutations } from "vuex";
+import { TITLE_RANK } from "../../../data/consts/mode";
 export default {
   name: "rank.Header",
   data() {
     return {
-      title: "番剧历史评分",
+      title: TITLE_RANK,
     };
   },
   methods: {

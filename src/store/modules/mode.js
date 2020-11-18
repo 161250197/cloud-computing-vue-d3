@@ -6,8 +6,7 @@ import {
 
 const store = {
     state: {
-        // mode: undefined
-        mode: MODE_HOT
+        mode: undefined
     },
     mutations: {
         resetMode (state) {

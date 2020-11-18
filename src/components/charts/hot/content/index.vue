@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import BarChart from "./BarChart.vue";
-import RadarChart from "./RadarChart.vue";
+import BarChart from "./BarChart";
+import RadarChart from "./RadarChart";
 
 export default {
   name: "hot.Content",

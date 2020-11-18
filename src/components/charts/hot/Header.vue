@@ -4,12 +4,14 @@
 
 <script>
 import { mapActions, mapMutations } from "vuex";
+import { TITLE_HOT } from "../../../data/consts/mode";
 export default {
   name: "hot.Header",
   data() {
+    // TODO 添加日期信息
     // const date =
     return {
-      title: "今日热度排行",
+      title: TITLE_HOT,
     };
   },
   methods: {

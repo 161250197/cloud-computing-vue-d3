@@ -1,21 +1,8 @@
 <template>
   <el-container id="app">
     <!-- TODO 添加动画 -->
-    <el-main v-if="modeNotSelected">
-      <div class="icon-wrapper" @click="changeModeHot">
-        <i class="el-icon-share"></i>
-        <span>热度</span>
-      </div>
-      <div class="icon-wrapper" @click="changeModeRank">
-        <i class="el-icon-star-off"></i>
-        <span>评分</span>
-      </div>
-      <div class="icon-wrapper" @click="changeModeUser">
-        <i class="el-icon-user-solid"></i>
-        <span>用户</span>
-      </div>
-    </el-main>
-    <el-main v-else>
+    <Enter v-if="modeNotSelected" />
+    <el-main style="padding: 0" v-else>
       <HotCharts v-if="isHotMode" />
       <RankCharts v-else-if="isRankMode" />
       <UserCharts v-else-if="isUserMode" />
@@ -24,7 +11,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
+import Enter from "./components/Enter";
 import HotCharts from "./components/charts/hot/index";
 import RankCharts from "./components/charts/rank/index";
 import UserCharts from "./components/charts/user/index";
@@ -33,6 +21,7 @@ import { MODE_HOT, MODE_RANK, MODE_USER } from "./data/consts/mode";
 export default {
   name: "App",
   components: {
+    Enter,
     HotCharts,
     RankCharts,
     UserCharts,
@@ -54,11 +43,7 @@ export default {
       return this.mode === MODE_USER;
     },
   },
-  data() {
-    return {};
-  },
   methods: {
-    ...mapMutations(["changeModeHot", "changeModeRank", "changeModeUser"]),
     ...mapActions(["initStore"]),
   },
   mounted() {
@@ -78,17 +63,8 @@ export default {
 </style>
 
 <style lang="less">
-html,
-body,
-#app {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
 #app {
   .el-main {
-    padding: 0 !important;
     .chart {
       height: 100%;
       .el-page-header {
@@ -100,6 +76,8 @@ body,
         box-sizing: border-box;
         z-index: 1;
         background: white;
+        border-bottom: thin solid lightgray;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       }
       .content {
         height: 100%;
@@ -108,5 +86,15 @@ body,
       }
     }
   }
+}
+</style>
+
+<style>
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 </style>

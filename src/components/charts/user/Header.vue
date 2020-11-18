@@ -4,11 +4,12 @@
 
 <script>
 import { mapActions, mapMutations } from "vuex";
+import { TITLE_USER } from "../../../data/consts/mode";
 export default {
   name: "user.Header",
   data() {
     return {
-      title: "用户关注推荐",
+      title: TITLE_USER,
     };
   },
   methods: {

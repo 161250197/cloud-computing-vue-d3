@@ -1,13 +1,32 @@
 <template>
-  <div class="user-charts">UserCharts</div>
+  <div class="wrapper" v-if="loaded">
+    <Header />
+    <Content />
+  </div>
 </template>
 
 <script>
-// TODO
-// 用户相关图
+import { mapActions, mapState } from "vuex";
+import Header from "./Header";
+import Content from "./content/index";
 
 export default {
-  name: "UserCharts",
+  name: "charts.user",
+  components: {
+    Header,
+    Content,
+  },
+  computed: {
+    ...mapState({
+      loaded: (state) => state.user.loaded,
+    }),
+  },
+  methods: {
+    ...mapActions(["initUserState"]),
+  },
+  mounted() {
+    this.initUserState();
+  },
 };
 </script>
 

@@ -5,19 +5,18 @@
 <script>
 import { mapActions, mapMutations } from "vuex";
 export default {
-  name: "hot.Header",
+  name: "user.Header",
   data() {
-    // const date =
     return {
-      title: "今日热度排行",
+      title: "用户关注推荐",
     };
   },
   methods: {
     ...mapMutations(["resetMode"]),
-    ...mapActions(["resetHotState"]),
+    ...mapActions(["resetUserState"]),
     goBack() {
       this.resetMode();
-      this.resetHotState();
+      this.resetUserState();
     },
   },
 };

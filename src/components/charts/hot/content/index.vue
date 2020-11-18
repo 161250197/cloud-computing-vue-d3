@@ -1,5 +1,5 @@
 <template>
-  <div class="today-wrapper">
+  <div class="wrapper">
     <BarChart style="width: 50%" />
     <RadarChart style="width: 50%" />
   </div>
@@ -11,7 +11,7 @@ import BarChart from "./BarChart.vue";
 import RadarChart from "./RadarChart.vue";
 
 export default {
-  name: "hot.content",
+  name: "hot.Content",
   components: {
     RadarChart,
     BarChart,
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.today-wrapper {
+.wrapper {
   display: flex;
   width: 100%;
 }

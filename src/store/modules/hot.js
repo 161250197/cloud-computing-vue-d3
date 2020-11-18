@@ -1,6 +1,5 @@
 import { getHotTodayData } from './../../api/api';
 
-/** 热度 store */
 const store = {
     state: {
         loaded: false,

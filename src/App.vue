@@ -1,37 +1,24 @@
 <template>
   <el-container id="app">
     <!-- TODO 添加动画 -->
-    <el-header>
-      <!-- TODO 样式调整 -->
-      <div
-        class="icon-wrapper"
-        :class="{ selected: isHotMode }"
-        @click="changeModeHot"
-      >
+    <el-main v-if="modeNotSelected">
+      <div class="icon-wrapper" @click="changeModeHot">
         <i class="el-icon-share"></i>
         <span>热度</span>
       </div>
-      <div
-        class="icon-wrapper"
-        :class="{ selected: isRankMode }"
-        @click="changeModeRank"
-      >
+      <div class="icon-wrapper" @click="changeModeRank">
         <i class="el-icon-star-off"></i>
         <span>评分</span>
       </div>
-      <div
-        class="icon-wrapper"
-        :class="{ selected: isUserMode }"
-        @click="changeModeUser"
-      >
+      <div class="icon-wrapper" @click="changeModeUser">
         <i class="el-icon-user-solid"></i>
         <span>用户</span>
       </div>
-    </el-header>
-    <el-main v-if="modeSelected">
+    </el-main>
+    <el-main v-else>
       <HotCharts v-if="isHotMode" />
-      <RankCharts v-if="isRankMode" />
-      <UserCharts v-if="isUserMode" />
+      <RankCharts v-else-if="isRankMode" />
+      <UserCharts v-else-if="isUserMode" />
     </el-main>
   </el-container>
 </template>
@@ -54,8 +41,8 @@ export default {
     ...mapState({
       mode: (state) => state.mode.mode,
     }),
-    modeSelected() {
-      return this.mode !== undefined;
+    modeNotSelected() {
+      return this.mode === undefined;
     },
     isHotMode() {
       return this.mode === MODE_HOT;

@@ -1,19 +1,31 @@
 <template>
-  <div class="rank-charts">
-    <RankPathChart />
+  <div class="wrapper" v-if="loaded">
+    <Header />
+    <Content />
   </div>
 </template>
 
 <script>
-// TODO
-// 评分相关图
-
-import RankPathChart from "./RankPathChart";
+import { mapActions, mapState } from "vuex";
+import Header from "./Header";
+import Content from "./content/index";
 
 export default {
-  name: "RankCharts",
+  name: "charts.rank",
   components: {
-    RankPathChart,
+    Header,
+    Content,
+  },
+  computed: {
+    ...mapState({
+      loaded: (state) => state.rank.loaded,
+    }),
+  },
+  methods: {
+    ...mapActions(["initRankState"]),
+  },
+  mounted() {
+    this.initRankState();
   },
 };
 </script>

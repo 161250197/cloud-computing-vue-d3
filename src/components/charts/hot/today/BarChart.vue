@@ -35,9 +35,9 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["setSelectedId"]),
+    ...mapMutations(["addSelectedId"]),
     onDataClicked(id) {
-      this.setSelectedId(id);
+      this.addSelectedId(id);
     },
     async initChart() {
       const container = this.$refs[this.chartRef];
@@ -53,7 +53,7 @@ export default {
       this.chart.tooltip(false);
 
       this.chart.interaction("element-active");
-      this.chart.interaction("element-single-selected");
+      this.chart.interaction("element-selected");
 
       this.chart.on("element:click", (ev) => {
         const id = ev.data.data[this.dataIdName];

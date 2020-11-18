@@ -1,7 +1,11 @@
 <template>
-  <div class="detail-wrapper" v-if="selectedId">
-    <DetailInfo :detail="detail" />
-    <RadarChart :ref="chartRef" :detail="detail" />
+  <div class="detail-wrapper" v-show="idSelected">
+    <el-carousel :autoplay="false" trigger="click">
+      <el-carousel-item v-for="id in selectedIdArr" :key="id">
+        <DetailInfo :detail="dataMap[id]" />
+      </el-carousel-item>
+    </el-carousel>
+    <RadarChart :ref="chartRef" :detailArr="detailArr" />
   </div>
 </template>
 
@@ -15,14 +19,14 @@ export default {
   name: "hot.today.detail",
   computed: {
     ...mapState({
-      selectedId: (state) => state.hot.selectedId,
+      selectedIdArr: (state) => state.hot.selectedIdArr,
       dataMap: (state) => state.hot.dataMap,
     }),
-    detail() {
-      if (this.selectedId === undefined) {
-        return undefined;
-      }
-      return this.dataMap[this.selectedId];
+    idSelected() {
+      return this.selectedIdArr.length > 0;
+    },
+    detailArr() {
+      return this.selectedIdArr.map((id) => this.dataMap[id]);
     },
   },
   components: {
@@ -35,10 +39,7 @@ export default {
     };
   },
   watch: {
-    async selectedId() {
-      if (!this.selectedId) {
-        return;
-      }
+    async selectedIdArr() {
       this.$nextTick(() => {
         this.$refs[this.chartRef].refreshChart();
       });

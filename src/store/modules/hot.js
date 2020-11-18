@@ -4,7 +4,7 @@ import { getHotTodayData } from './../../api/api';
 const store = {
     state: {
         loaded: false,
-        selectedId: undefined,
+        selectedIdArr: [],
         dataMap: undefined,
         hotRankArr: undefined
     },
@@ -12,13 +12,15 @@ const store = {
         setHotLoaded (state, loaded) {
             state.loaded = loaded;
         },
-        setSelectedId (state, id) {
-            if (state.selectedId === id)
+        addSelectedId (state, id) {
+            const index = state.selectedIdArr.indexOf(id);
+            const added = index >= 0;
+            if (added)
             {
-                state.selectedId = undefined;
+                state.selectedIdArr.splice(index, 1);
                 return;
             }
-            state.selectedId = id;
+            state.selectedIdArr.push(id);
         },
         setDataMap (state, dataArray) {
             state.dataMap = {};

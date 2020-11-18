@@ -13,8 +13,8 @@ import {
 export default {
   name: "hot.today.detail.RadarChart",
   props: {
-    detail: {
-      type: Object,
+    detailArr: {
+      type: Array,
       required: true,
     },
   },
@@ -29,17 +29,19 @@ export default {
     queryData() {
       const result = [];
       this.maxValue = 0;
-      RADAR_CHART_ITEMS_MAP.forEach(({ item, showName }) => {
-        const { name, id } = this.detail;
-        const value = this.detail[item];
-        this.maxValue = Math.max(this.maxValue, value);
-        const data = {};
-        const { ITEM, VALUE, ID, NAME } = RADAR_CHART_NAMES;
-        data[ITEM] = showName;
-        data[VALUE] = value;
-        data[ID] = id;
-        data[NAME] = name;
-        result.push(data);
+      this.detailArr.forEach((detail) => {
+        RADAR_CHART_ITEMS_MAP.forEach(({ item, showName }) => {
+          const { name, id } = detail;
+          const value = detail[item];
+          this.maxValue = Math.max(this.maxValue, value);
+          const data = {};
+          const { ITEM, VALUE, ID, NAME } = RADAR_CHART_NAMES;
+          data[ITEM] = showName;
+          data[VALUE] = value;
+          data[ID] = id;
+          data[NAME] = name;
+          result.push(data);
+        });
       });
       return result;
     },
@@ -133,6 +135,9 @@ export default {
           fillOpacity: 1,
         });
       chart.area().position(positionStr).color(NAME);
+
+      chart.removeInteraction("legend-filter");
+
       chart.render();
     },
   },

@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="post">
+      <!-- img 添加出错处理 -->
       <img :src="postSrc" />
     </div>
     <div>{{ detail.name }}</div>
     <div>首播时间：{{ firstBroadcastTimeStr }}</div>
+    <!-- TODO 评分改用星星 -->
     <div>评分：{{ detail.score }}</div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-wrapper" v-if="detail">
+  <div class="detail-wrapper" v-if="selectedId">
     <DetailInfo :detail="detail" />
     <RadarChart :ref="chartRef" :detail="detail" />
   </div>
@@ -9,7 +9,6 @@
 import { mapState } from "vuex";
 import RadarChart from "./RadarChart.vue";
 import DetailInfo from "./DetailInfo.vue";
-import { getHotDetail } from "../../../../../api/hot";
 import { RADAR_CHART_REF } from "../../../../../data/consts/hot";
 
 export default {
@@ -17,7 +16,14 @@ export default {
   computed: {
     ...mapState({
       selectedId: (state) => state.hot.selectedId,
+      dataMap: (state) => state.hot.dataMap,
     }),
+    detail() {
+      if (this.selectedId === undefined) {
+        return undefined;
+      }
+      return this.dataMap[this.selectedId];
+    },
   },
   components: {
     DetailInfo,
@@ -26,16 +32,13 @@ export default {
   data() {
     return {
       chartRef: RADAR_CHART_REF,
-      detail: undefined,
     };
   },
   watch: {
     async selectedId() {
-      if (this.selectedId === undefined) {
-        this.detail = undefined;
+      if (!this.selectedId) {
         return;
       }
-      this.detail = await getHotDetail(this.selectedId);
       this.$nextTick(() => {
         this.$refs[this.chartRef].refreshChart();
       });

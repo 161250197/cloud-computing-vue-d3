@@ -1,37 +1,42 @@
-import { MODE_DYNAMIC, MODE_TODAY } from "../../data/consts/hot";
-import { regularTimeToDay } from "./../../util/math";
+import { getHotTodayData } from './../../api/api';
 
 /** 热度 store */
 const store = {
     state: {
-        mode: undefined,
+        loaded: false,
         selectedId: undefined,
-        fromDate: undefined,
-        toDate: undefined
+        dataMap: undefined,
+        hotRankArr: undefined
     },
     mutations: {
-        resetSelectedId (state) {
-            state.selectedId = undefined;
+        setHotLoaded (state, loaded) {
+            state.loaded = loaded;
         },
         setSelectedId (state, id) {
+            if (state.selectedId === id)
+            {
+                state.selectedId = undefined;
+                return;
+            }
             state.selectedId = id;
         },
-        changeHotModeOneDay (state) {
-            state.mode = MODE_TODAY;
+        setDataMap (state, dataArray) {
+            state.dataMap = {};
+            dataArray.forEach((data) => {
+                const { id } = data;
+                state.dataMap[id] = data;
+            });
         },
-        changeHotModeDynamic (state) {
-            state.mode = MODE_DYNAMIC;
-        },
-        setHotFromDate (state, time) {
-            state.fromDate = regularTimeToDay(time);
-        },
-        setHotToDate (state, time) {
-            state.toDate = regularTimeToDay(time);
+        setHotRankArr (state, dataArray) {
+            state.hotRankArr = dataArray.sort((a, b) => a.hot - b.hot);
         },
     },
     actions: {
-        initHotState ({ commit }) {
-            commit('changeHotModeOneDay');
+        async initHotState ({ commit }) {
+            const hotTodayData = await getHotTodayData();
+            commit('setHotRankArr', hotTodayData);
+            commit('setDataMap', hotTodayData);
+            commit('setHotLoaded', true);
         }
     }
 };

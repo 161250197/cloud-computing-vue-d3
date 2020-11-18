@@ -15,13 +15,13 @@ import {
   DEFAULT_SELECTED_STATE_CONFIG,
   DEFAULT_ACTIVE_STATE_CONFIG,
 } from "../../../../data/consts/g2";
-import { getHotTodayData } from "./../../../../api/hot";
 import { BAR_CHART_NAMES } from "../../../../data/consts/hot";
 
 export default {
   name: "hot.today.BarChart",
   computed: {
     ...mapState({
+      hotRankArr: (state) => state.hot.hotRankArr,
       selectedId: (state) => state.hot.selectedId,
     }),
   },
@@ -35,20 +35,11 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["resetSelectedId", "setSelectedId"]),
-    queryData() {
-      return getHotTodayData();
-    },
+    ...mapMutations(["setSelectedId"]),
     onDataClicked(id) {
-      if (this.selectedId === id) {
-        this.resetSelectedId();
-        return;
-      }
       this.setSelectedId(id);
     },
     async initChart() {
-      const data = await this.queryData();
-
       const container = this.$refs[this.chartRef];
 
       this.chart = new Chart({
@@ -56,7 +47,7 @@ export default {
         container,
       });
 
-      this.chart.data(data);
+      this.chart.data(this.hotRankArr);
       this.chart.coordinate(TYPE_RECT).transpose();
       this.chart.legend(false);
       this.chart.tooltip(false);

@@ -1,7 +1,5 @@
-const MODE_TODAY = 'today';
-const MODE_DYNAMIC = 'dynamic';
 const BAR_CHART_NAMES = {
-    X: 'value',
+    X: 'hot',
     Y: 'name',
     ID: 'id'
 };
@@ -24,6 +22,4 @@ export {
     RADAR_CHART_NAMES,
     RADAR_CHART_ITEMS,
     BAR_CHART_NAMES,
-    MODE_DYNAMIC,
-    MODE_TODAY
 };

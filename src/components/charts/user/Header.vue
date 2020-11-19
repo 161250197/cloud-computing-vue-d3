@@ -4,7 +4,7 @@
 
 <script>
 import { mapActions, mapMutations } from "vuex";
-import { TITLE_USER } from "../../../data/consts/mode";
+import { TITLE_USER } from "../../../consts/mode";
 export default {
   name: "user.Header",
   data() {

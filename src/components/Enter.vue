@@ -42,7 +42,7 @@ import {
   INFO_HOT,
   INFO_RANK,
   INFO_USER,
-} from "../data/consts/mode";
+} from "../consts/mode";
 export default {
   name: "Enter",
   data() {

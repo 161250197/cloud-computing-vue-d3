@@ -2,7 +2,7 @@ import {
     MODE_HOT,
     MODE_RANK,
     MODE_USER,
-} from './../../data/consts/mode';
+} from './../../consts/mode';
 
 const store = {
     state: {

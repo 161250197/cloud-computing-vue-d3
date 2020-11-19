@@ -13,9 +13,9 @@ import {
   DEFAULT_DYNAMIC_ANIMATE_CONFIG,
   DEFAULT_SELECTED_STATE_CONFIG,
   DEFAULT_ACTIVE_STATE_CONFIG,
-} from "../../../../data/consts/g2";
-import { BAR_CHART_NAMES } from "../../../../data/consts/hot";
-import { CHART_REF } from "../../../../data/consts/common";
+} from "../../../../consts/g2";
+import { BAR_CHART_NAMES } from "../../../../consts/hot";
+import { CHART_REF } from "../../../../consts/common";
 
 export default {
   name: "hot.content.BarChart",

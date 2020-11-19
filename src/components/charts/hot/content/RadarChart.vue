@@ -5,11 +5,11 @@
 <script>
 // TODO 显示和颜色调整
 import { Chart } from "@antv/g2";
-import { CHART_REF } from "../../../../data/consts/common";
+import { CHART_REF } from "../../../../consts/common";
 import {
   RADAR_CHART_ITEMS_MAP,
   RADAR_CHART_NAMES,
-} from "../../../../data/consts/hot";
+} from "../../../../consts/hot";
 import { mapState } from "vuex";
 
 const DEFAULT_MAX_VALUE = 100;

@@ -16,7 +16,7 @@ import Enter from "./components/Enter";
 import HotCharts from "./components/charts/hot/index";
 import RankCharts from "./components/charts/rank/index";
 import UserCharts from "./components/charts/user/index";
-import { MODE_HOT, MODE_RANK, MODE_USER } from "./data/consts/mode";
+import { MODE_HOT, MODE_RANK, MODE_USER } from "./consts/mode";
 
 export default {
   name: "App",

@@ -4,7 +4,7 @@
 
 <script>
 import { mapActions, mapMutations } from "vuex";
-import { TITLE_HOT } from "../../../data/consts/mode";
+import { TITLE_HOT } from "../../../consts/mode";
 import { regularTimeToDay } from "../../../util/math";
 import { regularDateStr } from "../../../util/common";
 export default {

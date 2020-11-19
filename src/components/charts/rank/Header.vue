@@ -4,7 +4,7 @@
 
 <script>
 import { mapActions, mapMutations } from "vuex";
-import { TITLE_RANK } from "../../../data/consts/mode";
+import { TITLE_RANK } from "../../../consts/mode";
 export default {
   name: "rank.Header",
   data() {

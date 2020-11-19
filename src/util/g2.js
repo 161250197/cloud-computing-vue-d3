@@ -1,5 +1,5 @@
 import { registerAnimation } from "@antv/g2";
-import { LABEL_UPDATE, LABEL_APPEAR } from './../data/consts/g2';
+import { LABEL_UPDATE, LABEL_APPEAR } from './../consts/g2';
 
 function handleLabelAppear (element, animateCfg, cfg) {
     const label = element.getChildren()[0];

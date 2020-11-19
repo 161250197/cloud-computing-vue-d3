@@ -57,6 +57,10 @@ export default {
   border-radius: 20px;
   border: thin solid lightgray;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   .info-wrapper {
     border-bottom: thin solid lightgray;
     display: flex;

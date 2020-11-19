@@ -1,8 +1,12 @@
-const TODAY_TIME = 24 * 60 * 60 * 1000;
+const ONE_DAY_TIME = 24 * 60 * 60 * 1000;
 
 function regularTimeToDay (time) {
-    const restTime = time % TODAY_TIME;
+    const restTime = time % ONE_DAY_TIME;
     return time - restTime;
+}
+
+function calDate (time, dayCount) {
+    return time + dayCount * ONE_DAY_TIME;
 }
 
 function regularScoreDotOne (score) {
@@ -15,6 +19,7 @@ function regularScoreDotOne (score) {
 }
 
 export {
+    calDate,
     regularTimeToDay,
     regularScoreDotOne
 };

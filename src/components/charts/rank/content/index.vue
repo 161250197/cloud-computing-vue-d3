@@ -13,12 +13,29 @@
     </div>
     <div
       class="hide-background"
-      v-show="timeSelectorShow"
+      v-if="timeSelectorShow"
       @click="hideSelectorShow"
     >
       <TimeSelector @setTimeRange="setTimeRange" />
     </div>
-    <DynamicBarChart v-if="showDynamicBarChart" :from="from" :to="to" />
+    <div
+      class="hide-background dynamic-bar-chart-wrapper"
+      :class="{ 'show-header': dynamicBarChartHeaderShow }"
+      v-if="dynamicBarChartShow"
+      @mousemove="setShowHeaderTimeout"
+    >
+      <div
+        @mousemove.stop
+        @mouseenter="showDynamicBarChartHeader"
+        @mouseleave="hideDynamicBarChartHeader"
+      >
+        <el-page-header
+          @back="hideDynamicBarChart"
+          :content="dynamicBarChartTitle"
+        />
+      </div>
+      <DynamicBarChart :from="from" :to="to" />
+    </div>
     <el-button
       class="show-time-selector-button"
       type="primary"
@@ -37,6 +54,9 @@ import TimeSelector from "./TimeSelector";
 import DynamicBarChart from "./DynamicBarChart";
 import { mapState } from "vuex";
 
+const HIDE_DELAY = 2000;
+const QUIET_TIME = 1000;
+
 export default {
   name: "rank.Content",
   components: {
@@ -52,21 +72,47 @@ export default {
   },
   data() {
     return {
+      timeoutQuietTime: Date.now(),
+      dynamicBarChartHeaderShow: false,
+      hideDynamicBarChartHeaderTimeoutId: undefined,
+      dynamicBarChartTitle: "评分变化动态图",
       from: undefined,
       to: undefined,
-      showDynamicBarChart: false,
+      dynamicBarChartShow: false,
       timeSelectorShow: false,
       info: undefined,
     };
   },
   methods: {
+    setShowHeaderTimeout() {
+      if (Date.now() < this.timeoutQuietTime) {
+        return;
+      }
+      this.showDynamicBarChartHeader();
+      this.hideDynamicBarChartHeaderTimeoutId = setTimeout(() => {
+        this.hideDynamicBarChartHeader();
+      }, HIDE_DELAY);
+    },
+    updateTimeoutQuietTime() {
+      this.timeoutQuietTime = Date.now() + QUIET_TIME;
+    },
+    showDynamicBarChartHeader() {
+      clearTimeout(this.hideDynamicBarChartHeaderTimeoutId);
+      this.dynamicBarChartHeaderShow = true;
+      this.updateTimeoutQuietTime();
+    },
+    hideDynamicBarChartHeader() {
+      this.dynamicBarChartHeaderShow = false;
+      this.updateTimeoutQuietTime();
+    },
     setTimeRange(from, to) {
       this.from = from;
       this.to = to;
-      this.showDynamicBarChart = true;
+      this.dynamicBarChartShow = true;
+      this.hideSelectorShow();
     },
     hideDynamicBarChart() {
-      this.showDynamicBarChart = false;
+      this.dynamicBarChartShow = false;
     },
     showTimeSelector() {
       this.timeSelectorShow = true;
@@ -99,9 +145,18 @@ export default {
     left: 0;
     z-index: 10;
     background: rgba(255, 255, 255, 0.65);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    &.dynamic-bar-chart-wrapper {
+      background: white;
+      .el-page-header {
+        transition: transform 0.5s;
+        transform: translateY(-100%);
+      }
+      &.show-header {
+        .el-page-header {
+          transform: none;
+        }
+      }
+    }
   }
   .show-time-selector-button {
     position: fixed;

@@ -5,6 +5,12 @@
 <script>
 export default {
   name: "rank.content.InfoCard",
+  props: {
+    info: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
 

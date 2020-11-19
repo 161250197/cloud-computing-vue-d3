@@ -68,6 +68,9 @@ export default {
     white-space: break-spaces;
   }
   .el-main {
+    &::-webkit-scrollbar {
+      width: 0 !important;
+    }
     .chart {
       height: 100%;
       .el-page-header {
@@ -85,6 +88,7 @@ export default {
       .content {
         height: 100%;
         box-sizing: border-box;
+        padding: 20px;
         padding-top: 80px;
       }
     }

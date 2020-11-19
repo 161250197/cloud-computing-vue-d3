@@ -140,11 +140,11 @@ export default {
         color: #409eff;
       }
     }
-  }
-  .icon-wrapper:hover {
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-    .right {
-      opacity: 1;
+    &:hover {
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+      .right {
+        opacity: 1;
+      }
     }
   }
 }

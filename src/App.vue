@@ -64,6 +64,9 @@ export default {
 
 <style lang="less">
 #app {
+  .el-page-header__content {
+    white-space: break-spaces;
+  }
   .el-main {
     .chart {
       height: 100%;

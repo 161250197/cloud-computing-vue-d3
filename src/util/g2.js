@@ -1,15 +1,15 @@
 import { registerAnimation } from "@antv/g2";
-import { LABEL_UPDATE, LABEL_APPEAR } from './../consts/g2';
+import { LABEL_UPDATE, LABEL_APPEAR } from "./../consts/g2";
 
 function handleLabelAppear (element, animateCfg, cfg) {
     const label = element.getChildren()[0];
     const coordinate = cfg.coordinate;
     const startX = coordinate.start.x;
-    const finalX = label.attr('x');
-    const labelContent = label.attr('text');
+    const finalX = label.attr("x");
+    const labelContent = label.attr("text");
 
-    label.attr('x', startX);
-    label.attr('text', 0);
+    label.attr("x", startX);
+    label.attr("text", 0);
 
     const distance = finalX - startX;
     label.animate((ratio) => {
@@ -18,17 +18,17 @@ function handleLabelAppear (element, animateCfg, cfg) {
 
         return {
             x: position,
-            text,
+            text
         };
     }, animateCfg);
 }
 
 function handleLabelUpdate (element, animateCfg, cfg) {
-    const startX = element.attr('x');
-    const startY = element.attr('y');
+    const startX = element.attr("x");
+    const startY = element.attr("y");
     const finalX = cfg.toAttrs.x;
     const finalY = cfg.toAttrs.y;
-    const labelContent = element.attr('text');
+    const labelContent = element.attr("text");
     const finalContent = cfg.toAttrs.text;
 
     const distanceX = finalX - startX;
@@ -43,7 +43,7 @@ function handleLabelUpdate (element, animateCfg, cfg) {
         return {
             x: positionX,
             y: positionY,
-            text,
+            text
         };
     }, animateCfg);
 

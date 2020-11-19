@@ -1,19 +1,19 @@
 const store = {
     state: {
-        loaded: false,
+        loaded: false
     },
     mutations: {
         setRankLoaded (state, loaded) {
             state.loaded = loaded;
-        },
+        }
     },
     actions: {
         // TODO
         async initRankState ({ commit }) {
-            commit('setRankLoaded', true);
+            commit("setRankLoaded", true);
         },
         async resetRankState ({ commit }) {
-            commit('setRankLoaded', false);
+            commit("setRankLoaded", false);
         }
     }
 };

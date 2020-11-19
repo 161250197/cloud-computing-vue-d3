@@ -1,4 +1,4 @@
-import { getHotTodayData } from './../../api/api';
+import { getHotTodayData } from "./../../api/api";
 
 const store = {
     state: {
@@ -33,18 +33,18 @@ const store = {
         },
         setHotRankArr (state, dataArray) {
             state.hotRankArr = dataArray.sort((a, b) => a.hot - b.hot);
-        },
+        }
     },
     actions: {
         async initHotState ({ commit }) {
             const hotTodayData = await getHotTodayData();
-            commit('setHotRankArr', hotTodayData);
-            commit('setDataMap', hotTodayData);
-            commit('setHotLoaded', true);
+            commit("setHotRankArr", hotTodayData);
+            commit("setDataMap", hotTodayData);
+            commit("setHotLoaded", true);
         },
         async resetHotState ({ commit }) {
-            commit('setHotLoaded', false);
-            commit('resetSelectedIdArr');
+            commit("setHotLoaded", false);
+            commit("resetSelectedIdArr");
         }
     }
 };

@@ -1,8 +1,8 @@
 import {
     MODE_HOT,
     MODE_RANK,
-    MODE_USER,
-} from './../../consts/mode';
+    MODE_USER
+} from "./../../consts/mode";
 
 const store = {
     state: {
@@ -20,7 +20,7 @@ const store = {
         },
         changeModeUser (state) {
             state.mode = MODE_USER;
-        },
+        }
     }
 };
 

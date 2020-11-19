@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 import {
     serverHost,
     serverPort
-} from './../consts/server';
+} from "./../consts/server";
 
 const instance = axios.create({
     // TODO

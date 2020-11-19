@@ -1,4 +1,4 @@
-const DATE_JOINER = '-';
+const DATE_JOINER = "-";
 
 function regularDateStr (time) {
     const date = new Date(time);

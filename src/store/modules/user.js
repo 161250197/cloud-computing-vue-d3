@@ -1,18 +1,18 @@
 const store = {
     state: {
-        loaded: false,
+        loaded: false
     },
     mutations: {
         setUserLoaded (state, loaded) {
             state.loaded = loaded;
-        },
+        }
     },
     actions: {
         async initUserState ({ commit }) {
-            commit('setUserLoaded', true);
+            commit("setUserLoaded", true);
         },
         async resetUserState ({ commit }) {
-            commit('setUserLoaded', false);
+            commit("setUserLoaded", false);
         }
     }
 };

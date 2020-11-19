@@ -8,15 +8,25 @@
         @click="() => showRankInfo(info)"
       />
     </div>
-    <div class="dynamic-button-wrapper">
-      <button>dynamic-button</button>
-    </div>
-    <div class="rank-info-wrapper" v-if="info" @click="hideRankInfo">
+    <div class="hide-background" v-if="info" @click="hideRankInfo">
       <RankInfo :info="info" />
     </div>
+    <div
+      class="hide-background"
+      v-show="timeSelectorShow"
+      @click="hideSelectorShow"
+    >
+      <TimeSelector @setTimeRange="setTimeRange" />
+    </div>
+    <DynamicBarChart v-if="showDynamicBarChart" :from="from" :to="to" />
+    <el-button
+      class="show-time-selector-button"
+      type="primary"
+      icon="el-icon-data-analysis"
+      circle
+      @click="showTimeSelector"
+    />
     <el-backtop target=".el-main"></el-backtop>
-    <TimeSelector />
-    <DynamicBarChart />
   </div>
 </template>
 
@@ -42,10 +52,28 @@ export default {
   },
   data() {
     return {
+      from: undefined,
+      to: undefined,
+      showDynamicBarChart: false,
+      timeSelectorShow: false,
       info: undefined,
     };
   },
   methods: {
+    setTimeRange(from, to) {
+      this.from = from;
+      this.to = to;
+      this.showDynamicBarChart = true;
+    },
+    hideDynamicBarChart() {
+      this.showDynamicBarChart = false;
+    },
+    showTimeSelector() {
+      this.timeSelectorShow = true;
+    },
+    hideSelectorShow() {
+      this.timeSelectorShow = false;
+    },
     showRankInfo(info) {
       this.info = info;
     },
@@ -63,7 +91,7 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
   }
-  .rank-info-wrapper {
+  .hide-background {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -74,6 +102,21 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .show-time-selector-button {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    right: 40px;
+    bottom: 40px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .el-backtop {
+    bottom: 100px !important;
   }
 }
 </style>

@@ -5,6 +5,16 @@ function regularTimeToDay (time) {
     return time - restTime;
 }
 
+function regularScoreDotOne (score) {
+    const individual = `${Math.floor(score)}`;
+    const rest = Math.floor(score * 10) % 10;
+    if (rest === 0) {
+      return individual;
+    }
+    return `${individual}.${rest}`;
+}
+
 export {
-    regularTimeToDay
+    regularTimeToDay,
+    regularScoreDotOne
 };

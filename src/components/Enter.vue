@@ -88,6 +88,9 @@ export default {
       display: flex;
       align-items: center;
       i {
+        width: 72px;
+        height: 72px;
+        box-sizing: border-box;
         font-size: 36px;
         color: white;
         border-radius: 100%;

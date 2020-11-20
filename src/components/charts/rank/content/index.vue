@@ -70,7 +70,7 @@ export default {
     };
   },
   methods: {
-    setTimeRange(from, to) {
+    setTimeRange({ from, to }) {
       this.from = from;
       this.to = to;
       this.dynamicBarChartShow = true;

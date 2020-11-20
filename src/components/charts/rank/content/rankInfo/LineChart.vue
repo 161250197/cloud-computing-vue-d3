@@ -53,12 +53,12 @@ export default {
       });
 
       chart.data(data);
-      chart.scale({
-        score: {
-          min: 0,
-          max: 10,
-        },
-      });
+      const scaleProperty = {};
+      scaleProperty[Y] = {
+        min: 0,
+        max: 10,
+      };
+      chart.scale(scaleProperty);
 
       const positionStr = `${X}*${Y}`;
       chart.line().position(positionStr);

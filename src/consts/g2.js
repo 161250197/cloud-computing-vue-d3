@@ -70,7 +70,13 @@ const DEFAULT_ACTIVE_STATE_CONFIG = {
     }
 };
 
+const cartoonColorCallback = function (name) {
+    // TODO
+    return name === "a" ? "lightgrey" : "lightblue";
+}
+
 export {
+    cartoonColorCallback,
     DEFAULT_ACTIVE_STATE_CONFIG,
     DEFAULT_SELECTED_STATE_CONFIG,
     DEFAULT_Y_DYNAMIC_CONFIG,
@@ -83,5 +89,6 @@ export {
     DEFAULT_DURATION,
     EASE_LINEAR,
     LABEL_APPEAR,
-    LABEL_UPDATE
+    LABEL_UPDATE,
+    DEFAULT_OFFSET
 };

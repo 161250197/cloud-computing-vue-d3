@@ -3,6 +3,7 @@
     <div class="info-wrapper">
       <div class="name">{{ name }}</div>
       <div class="right">
+        <div class="title">{{ rightTitle }}</div>
         <el-rate :value="halfScore" disabled :max="5" />
         <div class="score-str">{{ scoreStr }}</div>
       </div>
@@ -31,6 +32,7 @@ export default {
     const halfScore = score / 2;
     const scoreStr = regularScoreDotOne(score);
     return {
+      rightTitle: "最新评分：",
       rankPath: undefined,
       name,
       halfScore,
@@ -76,10 +78,16 @@ export default {
     }
     .right {
       display: flex;
+      .title {
+        font-weight: bold;
+      }
+      .score-str {
+        margin: 0 10px;
+      }
+      .title,
       .score-str {
         height: 20px;
         line-height: 20px;
-        margin: 0 10px;
       }
     }
   }

@@ -20,20 +20,12 @@
     </div>
     <div
       class="hide-background dynamic-bar-chart-wrapper"
-      :class="{ 'show-header': dynamicBarChartHeaderShow }"
       v-if="dynamicBarChartShow"
-      @mousemove="setShowHeaderTimeout"
     >
-      <div
-        @mousemove.stop
-        @mouseenter="showDynamicBarChartHeader"
-        @mouseleave="hideDynamicBarChartHeader"
-      >
-        <el-page-header
-          @back="hideDynamicBarChart"
-          :content="dynamicBarChartTitle"
-        />
-      </div>
+      <el-page-header
+        @back="hideDynamicBarChart"
+        :content="dynamicBarChartTitle"
+      />
       <DynamicBarChart :from="from" :to="to" />
     </div>
     <el-button
@@ -54,9 +46,6 @@ import TimeSelector from "./TimeSelector";
 import DynamicBarChart from "./DynamicBarChart";
 import { mapState } from "vuex";
 
-const HIDE_DELAY = 2000;
-const QUIET_TIME = 1000;
-
 export default {
   name: "rank.Content",
   components: {
@@ -72,9 +61,6 @@ export default {
   },
   data() {
     return {
-      timeoutQuietTime: Date.now(),
-      dynamicBarChartHeaderShow: false,
-      hideDynamicBarChartHeaderTimeoutId: undefined,
       dynamicBarChartTitle: "评分变化动态图",
       from: undefined,
       to: undefined,
@@ -84,27 +70,6 @@ export default {
     };
   },
   methods: {
-    setShowHeaderTimeout() {
-      if (Date.now() < this.timeoutQuietTime) {
-        return;
-      }
-      this.showDynamicBarChartHeader();
-      this.hideDynamicBarChartHeaderTimeoutId = setTimeout(() => {
-        this.hideDynamicBarChartHeader();
-      }, HIDE_DELAY);
-    },
-    updateTimeoutQuietTime() {
-      this.timeoutQuietTime = Date.now() + QUIET_TIME;
-    },
-    showDynamicBarChartHeader() {
-      clearTimeout(this.hideDynamicBarChartHeaderTimeoutId);
-      this.dynamicBarChartHeaderShow = true;
-      this.updateTimeoutQuietTime();
-    },
-    hideDynamicBarChartHeader() {
-      this.dynamicBarChartHeaderShow = false;
-      this.updateTimeoutQuietTime();
-    },
     setTimeRange(from, to) {
       this.from = from;
       this.to = to;
@@ -147,15 +112,6 @@ export default {
     background: rgba(255, 255, 255, 0.65);
     &.dynamic-bar-chart-wrapper {
       background: white;
-      .el-page-header {
-        transition: transform 0.5s;
-        transform: translateY(-100%);
-      }
-      &.show-header {
-        .el-page-header {
-          transform: none;
-        }
-      }
     }
   }
   .show-time-selector-button {

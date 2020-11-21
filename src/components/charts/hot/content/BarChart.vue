@@ -13,6 +13,7 @@ import {
   DEFAULT_DYNAMIC_ANIMATE_CONFIG,
   DEFAULT_SELECTED_STATE_CONFIG,
   DEFAULT_ACTIVE_STATE_CONFIG,
+  cartoonColorCallback,
 } from "../../../../consts/g2";
 import { BAR_CHART_NAMES } from "../../../../consts/hot";
 import { CHART_REF } from "../../../../consts/common";
@@ -62,7 +63,7 @@ export default {
       chart
         .interval()
         .position(`${Y}*${X}`)
-        .color(NAME)
+        .color(NAME, cartoonColorCallback)
         .label(X, DEFAULT_LABEL_CONFIG)
         .animate(DEFAULT_DYNAMIC_ANIMATE_CONFIG)
         .state({

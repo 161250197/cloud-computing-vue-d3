@@ -5,9 +5,8 @@ import {
 } from "./../consts/server";
 
 const instance = axios.create({
-    // TODO
     baseURL: `http://${ serverHost }:${ serverPort }/`,
-    timeout: 1000
+    timeout: 4000
 });
 
 export {

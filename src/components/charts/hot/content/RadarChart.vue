@@ -3,7 +3,6 @@
 </template>
 
 <script>
-// TODO 显示和颜色调整
 import { Chart } from "@antv/g2";
 import { CHART_REF } from "../../../../consts/common";
 import {
@@ -11,6 +10,7 @@ import {
   RADAR_CHART_NAMES,
 } from "../../../../consts/hot";
 import { mapState } from "vuex";
+import { cartoonColorCallback } from "../../../../consts/g2";
 
 const DEFAULT_MAX_VALUE = 100;
 
@@ -132,11 +132,15 @@ export default {
       });
 
       const positionStr = `${ITEM}*${VALUE}`;
-      chart.line().position(positionStr).color(NAME).size(2);
+      chart
+        .line()
+        .position(positionStr)
+        .color(NAME, cartoonColorCallback)
+        .size(2);
       chart
         .point()
         .position(positionStr)
-        .color(NAME)
+        .color(NAME, cartoonColorCallback)
         .shape("circle")
         .size(4)
         .style({
@@ -144,7 +148,7 @@ export default {
           lineWidth: 1,
           fillOpacity: 1,
         });
-      chart.area().position(positionStr).color(NAME);
+      chart.area().position(positionStr).color(NAME, cartoonColorCallback);
 
       chart.removeInteraction("legend-filter");
 

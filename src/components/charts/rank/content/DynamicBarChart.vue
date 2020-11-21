@@ -54,6 +54,9 @@ export default {
       isRunning: true,
       finished: false,
       now: this.from,
+      rerunMessage: "开始重新播放",
+      stopMessage: "已暂停播放",
+      runMessage: "已继续播放",
     };
   },
   methods: {
@@ -63,13 +66,16 @@ export default {
       }
       if (this.finished) {
         this.rerun();
+        this.$message(this.rerunMessage);
         return;
       }
       if (this.isRunning) {
         this.stopRunning();
+        this.$message(this.stopMessage);
         return;
       }
       this.run();
+      this.$message(this.runMessage);
     },
     run() {
       this.refreshIntervalId = setInterval(() => {

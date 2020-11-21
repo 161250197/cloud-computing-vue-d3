@@ -1,6 +1,5 @@
 <template>
   <el-container id="app">
-    <!-- TODO 添加动画 -->
     <Enter v-if="modeNotSelected" />
     <el-main style="padding: 0" v-else>
       <HotCharts v-if="isHotMode" />

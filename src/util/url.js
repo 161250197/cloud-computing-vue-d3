@@ -1,10 +1,10 @@
 const protocol = 'http';
 
-function createLargeAvatorUrl (id) {
+function createLargeAvatarUrl (id) {
     return `${ protocol }://img9.doubanio.com/icon/up${ id }.jpg`;
 }
 
-function createAvatorUrl (id) {
+function createAvatarUrl (id) {
     return `${ protocol }://img9.doubanio.com/icon/u${ id }.jpg`;
 }
 
@@ -13,7 +13,7 @@ function createHomepageUrl (id) {
 }
 
 export {
-    createLargeAvatorUrl,
-    createAvatorUrl,
+    createLargeAvatarUrl,
+    createAvatarUrl,
     createHomepageUrl
 };

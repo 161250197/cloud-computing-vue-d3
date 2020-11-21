@@ -1,25 +1,36 @@
 <template>
   <div class="chart" v-if="loaded">
     <Header />
-    <Content />
+    <Random v-if="isRandomMode" />
+    <Recommend v-else-if="isRecommendMode" />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import Header from "./Header";
-import Content from "./content/index";
+import Random from "./content/Random";
+import Recommend from "./content/Recommend";
+import { RANDOM, RECOMMEND } from "../../../consts/user";
 
 export default {
   name: "charts.user",
   components: {
     Header,
-    Content,
+    Random,
+    Recommend,
   },
   computed: {
     ...mapState({
       loaded: (state) => state.user.loaded,
+      mode: (state) => state.user.mode,
     }),
+    isRandomMode() {
+      return this.mode === RANDOM;
+    },
+    isRecommendMode() {
+      return this.mode === RECOMMEND;
+    },
   },
   methods: {
     ...mapActions(["initUserState"]),

@@ -1,5 +1,5 @@
 <template>
-  <div class="user-card">
+  <div class="user-card" @click="onUserCardClicked">
     <el-avatar :src="avatar" :size="150" />
     <div class="name">{{ name }}</div>
     <div class="like">❤</div>
@@ -26,6 +26,11 @@ export default {
     return {
       avatar,
     };
+  },
+  methods: {
+    onUserCardClicked(e) {
+      this.$emit("click", e);
+    },
   },
 };
 </script>

@@ -1,13 +1,11 @@
 <template>
-  <div class="content">
-    <div class="title">{{ title }}</div>
-    <div class="user-cards">
-      <UserCard
-        v-for="({ id, name }, index) in recommendUsers"
-        :key="index"
-        :id="id"
-        :name="name"
-      />
+  <div class="bottom-wrapper">
+    <div
+      class="selected-users-brief-wrapper"
+      @click="showSelectedUsers"
+      v-show="selectedUsers.length"
+    >
+      <SelectedUsersBrief :users="selectedUsers" />
     </div>
     <div
       class="hide-background selected-user-wrapper"
@@ -17,48 +15,39 @@
       <SelectedUsers :users="selectedUsers" />
     </div>
     <el-button
-      @click="refreshRecommendUsers"
+      @click="refreshUsers"
       class="refresh-button"
       type="primary"
       icon="el-icon-refresh"
       circle
     />
-    <div
-      class="selected-users-brief-wrapper"
-      @click="showSelectedUsers"
-      v-show="selectedUsers.length"
-    >
-      <SelectedUsersBrief :users="selectedUsers" />
-    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import UserCard from "./UserCard";
 import SelectedUsers from "./SelectedUsers";
 import SelectedUsersBrief from "./SelectedUsersBrief";
 
 export default {
-  name: "user.Content",
+  name: "user.content.BottomComp",
   components: {
-    UserCard,
     SelectedUsers,
     SelectedUsersBrief,
   },
+  props: {
+    refreshUsers: {
+      type: Function,
+      required: true,
+    },
+  },
   computed: {
     ...mapState({
-      recommendUsers: (state) => state.user.recommendUsers,
+      selectedUsers: (state) => state.user.selectedUsers,
     }),
-    showedRecommendUsers() {
-      // TODO
-      return this.recommendUsers;
-    },
   },
   data() {
     return {
-      title: "选择感兴趣的用户吧  (<ゝω·)~☆kira",
-      selectedUsers: [],
       selectedUsersShow: false,
     };
   },
@@ -69,35 +58,13 @@ export default {
     hideSelectedUsers() {
       this.selectedUsersShow = false;
     },
-    refreshRecommendUsers() {
-      // TODO
-      return false;
-    },
   },
 };
 </script>
 
 <style lang="less" scoped>
-.content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  .title {
-    width: 100%;
-    line-height: 2;
-    font-size: larger;
-    font-weight: bold;
-    white-space: break-spaces;
-  }
-  .user-cards {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 80px;
-    box-sizing: border-box;
-  }
+.bottom-wrapper {
+  position: fixed;
   .refresh-button {
     position: fixed;
     width: 40px;

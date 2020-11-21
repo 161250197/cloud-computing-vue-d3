@@ -1,13 +1,13 @@
 <template>
   <div class="user-card">
-    <el-avatar :src="avator" :size="150" />
+    <el-avatar :src="avatar" :size="150" />
     <div class="name">{{ name }}</div>
     <div class="like">❤</div>
   </div>
 </template>
 
 <script>
-import { createLargeAvatorUrl } from "./../../../../util/url";
+import { createLargeAvatarUrl } from "./../../../../util/url";
 
 export default {
   name: "user.content.UserCard",
@@ -22,9 +22,9 @@ export default {
     },
   },
   data() {
-    const avator = createLargeAvatorUrl(this.id);
+    const avatar = createLargeAvatarUrl(this.id);
     return {
-      avator,
+      avatar,
     };
   },
 };

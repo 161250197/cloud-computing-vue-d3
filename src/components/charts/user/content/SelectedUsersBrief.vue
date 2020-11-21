@@ -1,8 +1,8 @@
 <template>
   <div class="selected-users">
     <el-avatar
-      v-for="(avator, index) in avators"
-      :src="avator"
+      v-for="(avatar, index) in avatars"
+      :src="avatar"
       :key="index"
       :style="{ right: 130 + `${index * 20}px` }"
     />
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { createAvatorUrl } from "./../../../../util/url";
+import { createAvatarUrl } from "./../../../../util/url";
 
 const SHOW_COUNT = 3;
 
@@ -24,10 +24,10 @@ export default {
     },
   },
   computed: {
-    avators() {
+    avatars() {
       const showUsers = this.users.slice(0, SHOW_COUNT);
-      const avators = showUsers.map(({ id }) => createAvatorUrl(id));
-      return avators;
+      const avatars = showUsers.map(({ id }) => createAvatarUrl(id));
+      return avatars;
     },
     countStr() {
       const count = this.users.length;

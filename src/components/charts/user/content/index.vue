@@ -59,7 +59,29 @@ export default {
     return {
       title: "选择感兴趣的用户吧  (<ゝω·)~☆kira",
       changeButtonTitle: "换一换",
-      selectedUsers: [],
+      // selectedUsers: [],
+      selectedUsers: [
+        {
+          name: "四不象",
+          id: "1832573",
+        },
+        {
+          name: "王贫困",
+          id: "34873691",
+        },
+        {
+          name: "zlic",
+          id: "200731406",
+        },
+        {
+          name: "远子",
+          id: "14597285",
+        },
+        {
+          name: "马亿",
+          id: "64563895",
+        },
+      ],
       selectedUsersShow: false,
     };
   },

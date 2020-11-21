@@ -4,8 +4,9 @@
       v-for="(avatar, index) in avatars"
       :src="avatar"
       :key="index"
-      :style="{ right: 130 + `${index * 20}px` }"
+      :style="{ right: right + 20 + `${index * 20}px` }"
     />
+    <div class="plus" v-show="showPlus" :style="{ right: `${right}px` }">+</div>
     <div class="count">{{ countStr }}</div>
   </div>
 </template>
@@ -29,11 +30,18 @@ export default {
       const avatars = showUsers.map(({ id }) => createAvatarUrl(id));
       return avatars;
     },
+    showPlus() {
+      return this.users.length > SHOW_COUNT;
+    },
     countStr() {
       const count = this.users.length;
-      let pre = count > SHOW_COUNT ? "+   " : "";
-      return `${pre}已选择 ${count} 人`;
+      return `已选择 ${count} 人`;
     },
+  },
+  data() {
+    return {
+      right: 140,
+    };
   },
 };
 </script>
@@ -50,8 +58,13 @@ export default {
     position: absolute;
     top: 0;
   }
+  .plus {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .plus,
   .count {
-    white-space: break-spaces;
     font-size: larger;
     font-weight: bold;
   }

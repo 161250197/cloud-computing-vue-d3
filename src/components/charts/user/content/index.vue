@@ -10,7 +10,7 @@
       />
     </div>
     <div
-      class="hide-background"
+      class="hide-background selected-user-wrapper"
       v-if="selectedUsersShow"
       @click="hideSelectedUsers"
     >
@@ -58,30 +58,7 @@ export default {
   data() {
     return {
       title: "选择感兴趣的用户吧  (<ゝω·)~☆kira",
-      changeButtonTitle: "换一换",
-      // selectedUsers: [],
-      selectedUsers: [
-        {
-          name: "四不象",
-          id: "1832573",
-        },
-        {
-          name: "王贫困",
-          id: "34873691",
-        },
-        {
-          name: "zlic",
-          id: "200731406",
-        },
-        {
-          name: "远子",
-          id: "14597285",
-        },
-        {
-          name: "马亿",
-          id: "64563895",
-        },
-      ],
+      selectedUsers: [],
       selectedUsersShow: false,
     };
   },
@@ -132,6 +109,10 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .selected-user-wrapper {
+    padding: 65px 20px 0;
+    box-sizing: border-box;
   }
   .selected-users-brief-wrapper {
     position: fixed;

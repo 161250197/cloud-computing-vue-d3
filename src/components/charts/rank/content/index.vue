@@ -102,17 +102,8 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
   }
-  .hide-background {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.65);
-    &.dynamic-bar-chart-wrapper {
-      background: white;
-    }
+  .dynamic-bar-chart-wrapper {
+    background: white;
   }
   .show-time-selector-button {
     position: fixed;

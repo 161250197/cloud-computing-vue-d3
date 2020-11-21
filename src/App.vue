@@ -64,6 +64,11 @@ export default {
 
 <style lang="less">
 #app {
+  .el-page-header__left {
+    .el-icon-back {
+      width: 18px;
+    }
+  }
   .el-page-header__content {
     white-space: break-spaces;
   }
@@ -90,6 +95,15 @@ export default {
         box-sizing: border-box;
         padding: 20px;
         padding-top: 80px;
+        .hide-background {
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          background: rgba(255, 255, 255, 0.65);
+        }
       }
     }
   }

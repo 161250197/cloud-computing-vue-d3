@@ -3,9 +3,10 @@
     <div class="title">{{ title }}</div>
     <div class="user-cards">
       <UserCard
-        v-for="(user, index) in recommendUsers"
+        v-for="({ id, name }, index) in recommendUsers"
         :key="index"
-        :user="user"
+        :id="id"
+        :name="name"
       />
     </div>
     <div
@@ -20,7 +21,6 @@
       class="refresh-button"
       type="primary"
       icon="el-icon-refresh"
-      plain
       circle
     />
     <div @click="showSelectedUsers">
@@ -68,6 +68,7 @@ export default {
     },
     refreshRecommendUsers() {
       // TODO
+      return false;
     },
   },
 };
@@ -84,6 +85,15 @@ export default {
     font-size: larger;
     font-weight: bold;
     white-space: break-spaces;
+  }
+  .user-cards {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px;
+    box-sizing: border-box;
   }
   .refresh-button {
     position: fixed;

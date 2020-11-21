@@ -68,7 +68,7 @@ export default {
   justify-content: space-between;
   flex-direction: column;
   width: 50%;
-  min-width: 300px;
+  min-width: 400px;
   height: 250px;
   background: white;
   border-radius: 20px;

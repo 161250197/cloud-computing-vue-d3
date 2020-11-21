@@ -3,7 +3,9 @@ import {
     HOT_TODAY_DATA,
     CARTOON_INFO_ARR,
     CARTOON_RANK_PATH,
-    TIME_RANGE_CARTOON_RANK_PATH
+    TIME_RANGE_CARTOON_RANK_PATH,
+    RANDOM_USERS,
+    RECOMMEND_USERS
 } from "../consts/server";
 
 async function getHotTodayData () {
@@ -41,9 +43,33 @@ async function getTimeRangeCartoonRankPath (from, to) {
     return result;
 }
 
+async function getRandomUsers (count) {
+    const requestConfig = {
+        params: {
+            count
+        }
+    };
+    const response = await instance.get(RANDOM_USERS, requestConfig);
+    const result = response.data;
+    return result;
+}
+
+async function getRecommendUsers (id) {
+    const requestConfig = {
+        params: {
+            id
+        }
+    };
+    const response = await instance.get(RECOMMEND_USERS, requestConfig);
+    const result = response.data;
+    return result;
+}
+
 export {
     getHotTodayData,
     getCartoonInfoArr,
     getCartoonRankPath,
-    getTimeRangeCartoonRankPath
+    getTimeRangeCartoonRankPath,
+    getRandomUsers,
+    getRecommendUsers
 };

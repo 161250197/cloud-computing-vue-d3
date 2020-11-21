@@ -16,6 +16,7 @@
       <SelectedUsers :users="selectedUsers" />
     </div>
     <el-button
+      @click="refreshRecommendUsers"
       class="refresh-button"
       type="primary"
       icon="el-icon-refresh"
@@ -45,6 +46,10 @@ export default {
     ...mapState({
       recommendUsers: (state) => state.user.recommendUsers,
     }),
+    showedRecommendUsers() {
+      // TODO
+      return this.recommendUsers;
+    },
   },
   data() {
     return {
@@ -60,6 +65,9 @@ export default {
     },
     hideSelectedUsers() {
       this.selectedUsersShow = false;
+    },
+    refreshRecommendUsers() {
+      // TODO
     },
   },
 };

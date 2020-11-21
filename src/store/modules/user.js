@@ -1,18 +1,6 @@
 const store = {
     state: {
-        steps: [
-            {
-                title: "选择用户",
-            },
-            {
-                title: "选择更多",
-            },
-            {
-                title: "查看结果",
-            }
-        ],
         recommendUsers: [],
-        activeStepIndex: 1,
         loaded: false
     },
     mutations: {

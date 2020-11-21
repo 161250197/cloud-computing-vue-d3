@@ -23,7 +23,11 @@
       icon="el-icon-refresh"
       circle
     />
-    <div @click="showSelectedUsers">
+    <div
+      class="selected-users-brief-wrapper"
+      @click="showSelectedUsers"
+      v-show="selectedUsers.length"
+    >
       <SelectedUsersBrief :users="selectedUsers" />
     </div>
   </div>
@@ -106,6 +110,15 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .selected-users-brief-wrapper {
+    position: fixed;
+    height: 40px;
+    right: 100px;
+    bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 </style>

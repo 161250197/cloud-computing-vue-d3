@@ -70,10 +70,11 @@ const DEFAULT_ACTIVE_STATE_CONFIG = {
     }
 };
 
+import colorMap from "./colorMap.json";
+
 const cartoonColorCallback = function (name) {
-    // TODO
-    return name === "a" ? "lightgrey" : "lightblue";
-}
+    return colorMap[name];
+};
 
 export {
     cartoonColorCallback,

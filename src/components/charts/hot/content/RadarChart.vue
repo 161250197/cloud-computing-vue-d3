@@ -64,15 +64,12 @@ export default {
       });
     },
     refreshChart() {
-      if (this.chart !== undefined) {
-        const data = this.queryData();
-        this.scaleValue();
-        this.$nextTick(() => {
-          this.chart.changeData(data);
-        });
-        return;
-      }
-      this.initChart();
+      const data = this.queryData();
+      this.scaleValue();
+      this.$nextTick(() => {
+        this.chart.changeData(data);
+      });
+      return;
     },
     initChart() {
       const data = this.queryData();
@@ -109,6 +106,12 @@ export default {
       chart.axis(ITEM, {
         line: null,
         tickLine: null,
+        label: {
+          style: {
+            fontSize: 20,
+            fontWeight: "bold",
+          },
+        },
         grid: {
           line: {
             style: {
@@ -154,6 +157,9 @@ export default {
 
       chart.render();
     },
+  },
+  mounted() {
+    this.initChart();
   },
 };
 </script>

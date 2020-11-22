@@ -17,11 +17,6 @@ const LABEL_UPDATE_ANIMATION = {
     easing: EASE_LINEAR
 };
 
-const DEFAULT_CHART_SET = {
-    autoFit: true,
-    height: 600,
-    padding: [20, 60]
-};
 
 const DEFAULT_OFFSET = 5;
 
@@ -55,18 +50,14 @@ const DEFAULT_Y_DYNAMIC_CONFIG = {
 
 const DEFAULT_SELECTED_STATE_CONFIG = {
     style: {
-        lineWidth: 2,
-        stroke: "#eebbbb",
-        strokeOpacity: 0.6
+        filter: "brightness(35%)"
     }
 };
 
 const DEFAULT_ACTIVE_STATE_CONFIG = {
-    animate: { duration: 100, easing: EASE_LINEAR },
     style: {
-        lineWidth: 2,
-        stroke: "#bbbbbb",
-        strokeOpacity: 0.6
+        stroke: "transparent",
+        cursor: "pointer"
     }
 };
 
@@ -83,7 +74,6 @@ export {
     DEFAULT_Y_DYNAMIC_CONFIG,
     DEFAULT_DYNAMIC_ANIMATE_CONFIG,
     DEFAULT_LABEL_CONFIG,
-    DEFAULT_CHART_SET,
     LABEL_APPEAR_ANIMATION,
     LABEL_UPDATE_ANIMATION,
     TYPE_RECT,

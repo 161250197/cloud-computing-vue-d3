@@ -142,7 +142,7 @@ export default {
       const chart = new Chart({
         autoFit: true,
         height: 500,
-        padding: [60, 100],
+        padding: [60, 120],
         container,
       });
 
@@ -166,6 +166,21 @@ export default {
           update: {
             duration: DEFAULT_DURATION,
             easing: EASE_LINEAR,
+          },
+        },
+      });
+      chart.axis(X, {
+        label: {
+          style: {
+            fontSize: 16,
+            fontWeight: "bold",
+          },
+          autoRotate: false,
+          autoHide: true,
+          autoEllipsis: true,
+          formatter(text) {
+            const len = 5;
+            return text.length > len ? `${text.slice(0, len)}...` : text;
           },
         },
       });

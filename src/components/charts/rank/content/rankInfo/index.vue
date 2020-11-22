@@ -1,7 +1,7 @@
 <template>
   <div class="rank-info" @click.stop>
     <div class="info-wrapper">
-      <div class="name">{{ name }}</div>
+      <div class="name" @click="jumpHomepage">{{ name }}</div>
       <div class="right">
         <div class="title">{{ rightTitle }}</div>
         <el-rate :value="halfScore" disabled :max="5" />
@@ -16,6 +16,7 @@
 import { regularScoreDotOne } from "../../../../../util/math";
 import { getCartoonRankPath } from "../../../../../api/api";
 import LineChart from "./LineChart";
+import { addProtocol } from "../../../../../util/url";
 export default {
   name: "rank.content.RankInfo",
   components: {
@@ -38,6 +39,12 @@ export default {
       halfScore,
       scoreStr,
     };
+  },
+  methods: {
+    jumpHomepage() {
+      const homepage = addProtocol(this.info.homepage);
+      window.open(homepage);
+    },
   },
   async mounted() {
     const { id } = this.info;
@@ -75,9 +82,15 @@ export default {
       line-height: 20px;
       font-size: larger;
       font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
     }
     .right {
       display: flex;
+      min-width: 240px;
+      margin-left: 10px;
       .title {
         font-weight: bold;
       }

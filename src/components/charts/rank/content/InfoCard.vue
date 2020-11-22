@@ -22,6 +22,7 @@
 <script>
 import { regularDateStr } from "../../../../util/common";
 import { regularScoreDotOne } from "../../../../util/math";
+import { addProtocol } from "../../../../util/url";
 export default {
   name: "rank.content.InfoCard",
   props: {
@@ -37,7 +38,7 @@ export default {
     const scoreStr = regularScoreDotOne(score);
     return {
       timeTitle: "首播时间：",
-      postSrc,
+      postSrc: addProtocol(postSrc),
       name,
       firstBroadcastTimeStr,
       halfScore,
@@ -59,6 +60,7 @@ export default {
   margin: 20px;
   width: 45%;
   min-width: 500px;
+  height: 200px;
   border-radius: 20px;
   border: thin solid lightgray;
   display: flex;
@@ -71,6 +73,8 @@ export default {
     justify-content: center;
     .post-wrapper {
       margin-right: 20px;
+      display: flex;
+      align-items: center;
       img {
         width: 100px;
       }
@@ -79,6 +83,7 @@ export default {
       display: flex;
       flex-direction: column;
       line-height: 2;
+      justify-content: space-between;
       .name {
         font-size: larger;
         font-weight: bold;
@@ -92,6 +97,7 @@ export default {
   }
   .right {
     display: flex;
+    min-width: 120px;
     .score-str {
       height: 20px;
       line-height: 20px;

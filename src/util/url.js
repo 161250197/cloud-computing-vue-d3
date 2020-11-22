@@ -12,7 +12,12 @@ function createHomepageUrl (id) {
     return `${ protocol }://www.douban.com/people/${ id }`;
 }
 
+function addProtocol (url) {
+    return `${ protocol }://${ url }`;
+}
+
 export {
+    addProtocol,
     createLargeAvatarUrl,
     createAvatarUrl,
     createHomepageUrl

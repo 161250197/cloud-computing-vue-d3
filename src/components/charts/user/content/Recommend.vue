@@ -75,13 +75,16 @@ export default {
   methods: {
     ...mapMutations(["setUserRandomState"]),
     ...mapActions(["selectUser", "refreshRandomUsers"]),
+    onNotFind() {
+      this.$message(this.notFindMessage);
+    },
     async restartRecommend() {
       await this.refreshRandomUsers();
       if (this.randomUsers.length) {
         this.setUserRandomState();
         return;
       }
-      this.$message(this.notFindMessage);
+      this.onNotFind();
     },
     refreshRecommendUsers() {
       if (this.hasMoreRecommend) {

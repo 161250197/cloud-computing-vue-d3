@@ -10,7 +10,7 @@
         @click="() => onUserCardClick(user)"
       />
     </div>
-    <BottomComp :refreshUsers="refreshRandomUsers" />
+    <BottomComp :refreshUsers="refreshUsers" />
   </div>
 </template>
 
@@ -33,11 +33,18 @@ export default {
   data() {
     return {
       title: "选择感兴趣的用户吧  (<ゝω·)~☆kira",
+      notFindMessage: "抱歉没有找到……再试试？",
     };
   },
   methods: {
     ...mapMutations(["setUserRecommendState"]),
     ...mapActions(["refreshRandomUsers", "selectUser"]),
+    refreshUsers() {
+      this.refreshRandomUsers(this.onNotFind);
+    },
+    onNotFind() {
+      this.$message(this.notFindMessage);
+    },
     onUserCardClick(user) {
       this.selectUser(user);
       this.setUserRecommendState();

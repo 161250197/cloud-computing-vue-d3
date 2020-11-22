@@ -13,6 +13,7 @@ const store = {
     mutations: {
         setUserRecommendState (state) {
             state.mode = RECOMMEND;
+            state.randomUsers = [];
         },
         setUserRandomState (state) {
             state.mode = RANDOM;
@@ -47,15 +48,24 @@ const store = {
             selectedUsers.push(user);
             userIdMap[user.id] = true;
         },
-        setRandomUsers (state, users) {
-            state.randomUsers = [];
-            const { userIdMap, randomUsers } = state;
+        setRandomUsers (state, { users, onFail }) {
+            const randomUsers = [];
+            const { userIdMap } = state;
             for (let user of users)
             {
                 if (!userIdMap[user.id])
                 {
                     randomUsers.push(user);
                 }
+            }
+            if (randomUsers.length)
+            {
+                state.randomUsers = randomUsers;
+                return;
+            }
+            if (onFail)
+            {
+                onFail();
             }
         },
         setUserLoaded (state, loaded) {
@@ -69,9 +79,9 @@ const store = {
             const users = await getRecommendUsers(user.id);
             commit("addRecommendUsers", users);
         },
-        async refreshRandomUsers ({ commit }) {
+        async refreshRandomUsers ({ commit }, onFail) {
             const users = await getRandomUsers(SHOW_COUNT);
-            commit("setRandomUsers", users);
+            commit("setRandomUsers", { users, onFail });
         },
         async initUserState ({ commit, dispatch }) {
             dispatch("refreshRandomUsers");

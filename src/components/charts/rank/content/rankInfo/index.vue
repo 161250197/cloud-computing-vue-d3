@@ -93,7 +93,7 @@ export default {
     }
     .right {
       display: flex;
-      min-width: 240px;
+      min-width: 260px;
       margin-left: 10px;
       .title {
         font-weight: bold;

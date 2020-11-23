@@ -97,7 +97,7 @@ export default {
   }
   .right {
     display: flex;
-    min-width: 120px;
+    min-width: 140px;
     .score-str {
       height: 20px;
       line-height: 20px;

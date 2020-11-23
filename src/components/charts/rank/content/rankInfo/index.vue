@@ -8,7 +8,10 @@
         <div class="score-str">{{ scoreStr }}</div>
       </div>
     </div>
-    <LineChart :rankPath="rankPath" v-if="rankPath" />
+    <LineChart :rankPath="rankPath" v-if="rankPath && rankPath.length" />
+    <div class="no-rank-title-wrapper" v-else-if="rankPath">
+      {{ noRankTitle }}
+    </div>
   </div>
 </template>
 
@@ -33,6 +36,7 @@ export default {
     const halfScore = score / 2;
     const scoreStr = regularScoreDotOne(score);
     return {
+      noRankTitle: "抱歉，暂时没有该番剧的评分信息",
       rightTitle: "最新评分：",
       rankPath: undefined,
       name,
@@ -103,6 +107,9 @@ export default {
         line-height: 20px;
       }
     }
+  }
+  .no-rank-title-wrapper {
+    margin-top: 20px;
   }
 }
 </style>

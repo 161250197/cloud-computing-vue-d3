@@ -1,5 +1,7 @@
 const LABEL_APPEAR = "label-appear";
 const LABEL_UPDATE = "label-update";
+const LABEL_APPEAR_ONE = "label-appear-one";
+const LABEL_UPDATE_ONE = "label-update-one";
 const EASE_LINEAR = "easeLinear";
 const DEFAULT_DURATION = 200;
 const TYPE_RECT = "rect";
@@ -68,6 +70,8 @@ const cartoonColorCallback = function (name) {
 };
 
 export {
+    LABEL_APPEAR_ONE,
+    LABEL_UPDATE_ONE,
     cartoonColorCallback,
     DEFAULT_ACTIVE_STATE_CONFIG,
     DEFAULT_SELECTED_STATE_CONFIG,

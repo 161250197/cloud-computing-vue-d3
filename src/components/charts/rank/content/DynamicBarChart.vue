@@ -11,8 +11,8 @@ import { Chart } from "@antv/g2";
 import {
   EASE_LINEAR,
   TYPE_RECT,
-  LABEL_APPEAR,
-  LABEL_UPDATE,
+  LABEL_APPEAR_ONE,
+  LABEL_UPDATE_ONE,
   DEFAULT_OFFSET,
   cartoonColorCallback,
 } from "../../../../consts/g2";
@@ -192,13 +192,13 @@ export default {
         .label(Y, {
           animate: {
             appear: {
-              animation: LABEL_APPEAR,
+              animation: LABEL_APPEAR_ONE,
               delay: 0,
               duration: DEFAULT_DURATION,
               easing: EASE_LINEAR,
             },
             update: {
-              animation: LABEL_UPDATE,
+              animation: LABEL_UPDATE_ONE,
               duration: DEFAULT_DURATION,
               easing: EASE_LINEAR,
             },

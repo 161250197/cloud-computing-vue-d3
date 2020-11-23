@@ -17,6 +17,7 @@ const store = {
         },
         setUserRandomState (state) {
             state.mode = RANDOM;
+            state.recommendUsers = [];
         },
         resetRecommend (state) {
             state.selectedUsers = [];

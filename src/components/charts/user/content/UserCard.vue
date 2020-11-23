@@ -60,7 +60,8 @@ export default {
     }
   }
   .name {
-    line-height: 2;
+    line-height: 36px;
+    height: 36px;
     font-size: larger;
     font-weight: bold;
     margin: 20px 0;

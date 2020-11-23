@@ -56,8 +56,12 @@ export default {
       }
       const result = [];
       for (let i = 0; i < SHOW_COUNT; i++) {
-        const index = (start + i) % userCount;
-        result.push(recommendUsers[index]);
+        const index = start + i;
+        if (index < userCount) {
+          result.push(recommendUsers[index]);
+        } else {
+          break;
+        }
       }
       return result;
     },
@@ -87,8 +91,8 @@ export default {
       this.onNotFind();
     },
     refreshRecommendUsers() {
-      if (this.hasMoreRecommend) {
-        this.start = (this.start + SHOW_COUNT) % this.userCount;
+      if (this.hasMoreRecommend && this.start + SHOW_COUNT < this.userCount) {
+        this.start += SHOW_COUNT;
         return;
       }
       this.restartRecommend();

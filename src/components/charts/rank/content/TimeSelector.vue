@@ -28,12 +28,13 @@
 </template>
 
 <script>
-import { calDate, regularTimeToDay } from "../../../../util/math";
+import { MAX_FROM_TIME } from "../../../../consts/common";
+import { regularTimeToDay } from "../../../../util/math";
 export default {
   name: "rank.content.TimeSelector",
   data() {
     const to = regularTimeToDay(Date.now());
-    const from = calDate(to, -60);
+    const from = MAX_FROM_TIME;
     return {
       to,
       from,

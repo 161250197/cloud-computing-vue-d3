@@ -3,6 +3,7 @@ import { SHOW_COUNT, RECOMMEND, RANDOM } from "../../consts/user";
 
 const store = {
     state: {
+        isLoading: false,
         mode: undefined,
         userIdMap: undefined,
         randomUsers: undefined,
@@ -11,6 +12,9 @@ const store = {
         loaded: false
     },
     mutations: {
+        setUserIsLoading(state, flag) {
+            state.isLoading = flag;
+        },
         setUserRecommendState (state) {
             state.mode = RECOMMEND;
             state.randomUsers = [];

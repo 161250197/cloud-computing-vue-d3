@@ -1,7 +1,7 @@
 <template>
   <div class="chart" v-if="loaded">
     <Header />
-    <Random v-if="isRandomMode" />
+    <Random v-if="isRandomMode" v-loading="isLoading" />
     <Recommend v-else-if="isRecommendMode" />
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
   },
   computed: {
     ...mapState({
+      isLoading: (state) => state.user.isLoading,
       loaded: (state) => state.user.loaded,
       mode: (state) => state.user.mode,
     }),

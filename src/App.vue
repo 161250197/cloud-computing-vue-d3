@@ -84,7 +84,7 @@ export default {
         left: 0;
         width: 100%;
         box-sizing: border-box;
-        z-index: 1;
+        z-index: 2001;
         background: white;
         border-bottom: thin solid lightgray;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -100,7 +100,7 @@ export default {
           position: fixed;
           top: 0;
           left: 0;
-          z-index: 10;
+          z-index: 2002;
           background: rgba(255, 255, 255, 0.65);
         }
       }

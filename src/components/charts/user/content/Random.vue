@@ -37,7 +37,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["setUserRecommendState"]),
+    ...mapMutations(["setUserRecommendState", "setUserIsLoading"]),
     ...mapActions(["refreshRandomUsers", "selectUser"]),
     refreshUsers() {
       this.refreshRandomUsers(this.onNotFind);
@@ -45,9 +45,11 @@ export default {
     onNotFind() {
       this.$message(this.notFindMessage);
     },
-    onUserCardClick(user) {
-      this.selectUser(user);
+    async onUserCardClick(user) {
+      this.setUserIsLoading(true);
+      await this.selectUser(user);
       this.setUserRecommendState();
+      this.setUserIsLoading(false);
     },
   },
 };

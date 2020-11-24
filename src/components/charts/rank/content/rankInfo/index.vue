@@ -12,6 +12,7 @@
     <div class="no-rank-title-wrapper" v-else-if="rankPath">
       {{ noRankTitle }}
     </div>
+    <div class="loading-wrapper" v-else v-loading="true"></div>
   </div>
 </template>
 
@@ -74,6 +75,10 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  .loading-wrapper {
+    width: 100%;
+    height: 100%;
+  }
   .info-wrapper {
     border-bottom: thin solid lightgray;
     display: flex;

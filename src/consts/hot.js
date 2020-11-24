@@ -8,7 +8,7 @@ const RADAR_CHART_ITEMS_MAP = [
     { item: "wantWatchSum", showName: "想看" },
     { item: "isWatchingSum", showName: "在看" },
     { item: "watchedSum", showName: "看过" },
-    { item: "commendSum", showName: "评论" },
+    { item: "commentSum", showName: "评论" },
     { item: "thumbUpSum", showName: "点赞" }
 ];
 const RADAR_CHART_NAMES = {

@@ -1,5 +1,5 @@
 <template>
-  <div class="info-card" @click="onClick">
+  <div class="info-card" :class="{ 'has-score': hasScore }" @click="onClick">
     <div class="left">
       <div class="post-wrapper">
         <img :src="postSrc" />
@@ -12,14 +12,18 @@
         </div>
       </div>
     </div>
-    <div class="right">
+    <div class="right" v-if="hasScore">
       <el-rate :value="halfScore" disabled :max="5" />
       <div class="score-str">{{ scoreStr }}</div>
+    </div>
+    <div class="right" v-else>
+      <div class="score-str">{{ noScore }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { NO_SCORE } from "../../../../consts/common";
 import { regularDateStr } from "../../../../util/common";
 import { regularScoreDotOne } from "../../../../util/math";
 import { addProtocol } from "../../../../util/url";
@@ -35,8 +39,13 @@ export default {
     const { name, postSrc, firstBroadcastTime, score } = this.info;
     const firstBroadcastTimeStr = regularDateStr(firstBroadcastTime);
     const halfScore = score / 2;
-    const scoreStr = regularScoreDotOne(score);
+    const hasScore = !!score;
+    const scoreStr = hasScore ? regularScoreDotOne(score) : NO_SCORE;
+    const noScore = NO_SCORE;
     return {
+      hasScore,
+      noScore,
+      score,
       timeTitle: "首播时间：",
       postSrc: addProtocol(postSrc),
       name,
@@ -47,7 +56,9 @@ export default {
   },
   methods: {
     onClick() {
-      this.$emit("click");
+      if (this.hasScore) {
+        this.$emit("click");
+      }
     },
   },
 };
@@ -67,7 +78,12 @@ export default {
   justify-content: space-between;
   background: white;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  &.has-score {
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
   .left {
     display: flex;
     justify-content: center;
@@ -98,16 +114,11 @@ export default {
   .right {
     display: flex;
     min-width: 140px;
+    justify-content: flex-end;
     .score-str {
       height: 20px;
       line-height: 20px;
       margin: 0 10px;
-    }
-  }
-  &:hover {
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-    .right {
-      opacity: 1;
     }
   }
 }

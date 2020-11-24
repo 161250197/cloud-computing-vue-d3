@@ -1,13 +1,16 @@
 <template>
   <div class="user-card" @click="onUserCardClicked">
-    <el-avatar :src="avatar" :size="150" />
+    <el-avatar :src="avatar" :size="150" @error="() => false">
+      <img :src="defaultAvatar" />
+    </el-avatar>
     <div class="name">{{ name }}</div>
     <div class="like">❤</div>
   </div>
 </template>
 
 <script>
-import { createLargeAvatarUrl } from "./../../../../util/url";
+import { DEFAULT_AVATAR } from "../../../../consts/common";
+import { createLargeAvatarUrl, addProtocol } from "./../../../../util/url";
 
 export default {
   name: "user.content.UserCard",
@@ -23,7 +26,9 @@ export default {
   },
   data() {
     const avatar = createLargeAvatarUrl(this.id);
+    const defaultAvatar = addProtocol(DEFAULT_AVATAR);
     return {
+      defaultAvatar,
       avatar,
     };
   },

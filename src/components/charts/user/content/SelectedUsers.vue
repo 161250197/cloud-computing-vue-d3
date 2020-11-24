@@ -5,9 +5,12 @@
       v-for="({ avatar, homepage, name }, index) in infos"
       :key="index"
       @click.stop="() => onUserInfoClicked(homepage)"
+      @error="() => false"
     >
       <div class="left">
-        <el-avatar :src="avatar" :size="100" />
+        <el-avatar :src="avatar" :size="100">
+          <img :src="defaultAvatar" />
+        </el-avatar>
         <div class="name">
           {{ name }}
         </div>
@@ -18,9 +21,11 @@
 </template>
 
 <script>
+import { DEFAULT_AVATAR } from "../../../../consts/common";
 import {
   createLargeAvatarUrl,
   createHomepageUrl,
+  addProtocol,
 } from "./../../../../util/url";
 
 export default {
@@ -45,7 +50,9 @@ export default {
     },
   },
   data() {
+    const defaultAvatar = addProtocol(DEFAULT_AVATAR);
     return {
+      defaultAvatar,
       rightTitle: "看看TA的主页",
     };
   },

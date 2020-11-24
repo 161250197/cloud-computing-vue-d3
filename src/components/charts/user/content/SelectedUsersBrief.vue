@@ -5,6 +5,7 @@
       :src="avatar"
       :key="index"
       :style="{ right: right + 20 + `${index * 20}px` }"
+      @error="() => false"
     />
     <div class="plus" v-show="showPlus" :style="{ right: `${right}px` }">+</div>
     <div class="count">{{ countStr }}</div>

@@ -1,5 +1,7 @@
 import { getHotTodayData } from "./../../api/api";
 
+const maxLength = 20;
+
 const store = {
     state: {
         loaded: false,
@@ -32,7 +34,9 @@ const store = {
             });
         },
         setHotRankArr (state, dataArray) {
-            state.hotRankArr = dataArray.sort((a, b) => a.hot - b.hot);
+            const hotRankArr = dataArray.sort((a, b) => a.hot - b.hot);
+            const len = hotRankArr.length;
+            state.hotRankArr = hotRankArr.slice(len - maxLength);
         }
     },
     actions: {
